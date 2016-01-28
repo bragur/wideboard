@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Wideboard</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-7s5uDGW3AHqw6xtJmNNtr+OBRJUlgkNJEo78P4b0yRw= sha512-nNo+yCHEyn0smMxSswnf/OnX6/KwJuZTlNZBjauKhTK0c+zT+q5JOCx0UFhXQ6rJR9jg6Es8gPuD2uZcYDLqSw==" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-2 blank"></div>
+            <div class="col-md-8" id="main">
+                <div class="row">
+                    <h1 class="site-title">Wideboard.js</h1>
+                    <div class="options">
+                        <input type="color" name="colorPicker" id="colorPicker" class="picker" />
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default btn-lg" style="padding: 4px 12px;"><i id="currentTool" class="fa fa-pencil"> Pen</i></button>
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="caret"></span>
+                                <span class="sr-only">Toggle Dropdown</span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li class="toolOption" data-tool="Pen"><a href="#"><i class="fa fa-pencil fa-2x"></i><div class="tool">Pen</div></a></li>
+                                <li class="toolOption" data-tool="Rectangle"><a href="#"><i class="fa fa-square-o fa-2x"></i><div class="tool">Rectangle</div></a></li>
+                                <li class="toolOption" data-tool="Ellipse"><a href="#"><i class="fa fa-circle-thin fa-2x"></i><div class="tool">Ellipse</div></a></li>
+                                <li class="toolOption" data-tool="Line"><a href="#"><i class="fa fa-minus fa-2x"></i><div class="tool">Line</div></a></li>
+                                <li class="toolOption" data-tool="Text"><a href="#"><i class="fa fa-i-cursor fa-2x"></i><div class="tool">Text</div></a></li>
+                                <li class="toolOption" data-tool="Move"><a href="#"><i class="fa fa-hand-grab-o fa-2x"></i><div class="tool">Move</div></a></li>
+                            </ul>
+                        </div>
+                        <div id="font" style="display: none;">
+                            <div class="btn-group">
+                                <button id="currentFont" type="button" class="btn btn-default btn-lg" style="padding: 4px 12px;"><div class="font-arial">Arial</div></button>
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class="caret"></span>
+                                    <span class="sr-only">Toggle Dropdown</span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li class="fontOption" data-font="Arial"><a href="#"><div class="font-bigger font-arial">Arial</div></a></li>
+                                    <li class="fontOption" data-font="Courier New"><a href="#"><div class="font-bigger font-courier-new">Courier New</div></a></li>
+                                    <li class="fontOption" data-font="Verdana"><a href="#"><div class="font-bigger font-verdana">Verdana</div></a></li>
+                                    <li class="fontOption" data-font="Comic sans"><a href="#"><div class="font-bigger font-comic-sans">Comic sans</div></a></li>
+                                </ul>
+                            </div>
+                            <div class="btn-group">
+                                <button id="currentFontSize" type="button" class="btn btn-default btn-lg" style="padding: 4px 12px;">12pt</button>
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class="caret"></span>
+                                    <span class="sr-only">Toggle Dropdown</span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li class="fontSize" data-fontsize="7"><a href="#"><div class="pt7">7pt</div></a></li>
+                                    <li class="fontSize" data-fontsize="8"><a href="#"><div class="pt8">8pt</div></a></li>
+                                    <li class="fontSize" data-fontsize="9"><a href="#"><div class="pt9">9pt</div></a></li>
+                                    <li class="fontSize" data-fontsize="10"><a href="#"><div class="pt10">10pt</div></a></li>
+                                    <li class="fontSize" data-fontsize="12"><a href="#"><div class="pt12">12pt</div></a></li>
+                                    <li class="fontSize" data-fontsize="14"><a href="#"><div class="pt14">14pt</div></a></li>
+                                    <li class="fontSize" data-fontsize="18"><a href="#"><div class="pt18">18pt</div></a></li>
+                                    <li class="fontSize" data-fontsize="24"><a href="#"><div class="pt24">24pt</div></a></li>
+                                    <li class="fontSize" data-fontsize="36"><a href="#"><div class="pt36">36pt</div></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="btn-group" id="lineWidth">
+                            <button id="currentLineWidthLabel" type="button" class="btn btn-default btn-lg" style="padding: 4px 12px;"><i id="currentLineWidth" class="line onepx"></i> 1px</button>
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="caret"></span>
+                                <span class="sr-only">Toggle Dropdown</span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li class="lineWidth" data-width="0.2"><a href="#"><i class="line line-wider onepx"></i> Hairline</a></li>
+                                <li class="lineWidth" data-width="0.5"><a href="#"><i class="line line-wider onepx"></i> 0.5px</a></li>
+                                <li class="lineWidth" data-width="1"><a href="#"><i class="line line-wider onepx"></i> 1px</a></li>
+                                <li class="lineWidth" data-width="2"><a href="#"><i class="line line-wider twopx"></i> 2px</a></li>
+                                <li class="lineWidth" data-width="3"><a href="#"><i class="line line-wider threepx"></i> 3px</a></li>
+                                <li class="lineWidth" data-width="4"><a href="#"><i class="line line-wider fourpx"></i> 4px</a></li>
+                                <li class="lineWidth" data-width="5"><a href="#"><i class="line line-wider fivepx"></i> 5px</a></li>
+                                <li class="lineWidth" data-width="10"><a href="#"><i class="line line-wider tenpx"></i> 10px</a></li>
+                            </ul>
+                        </div>
+                        <div class="fill-group" style="display: none;">
+                            <input type="checkbox" name="fill" id="fill" class=""></input>
+                            <label for="fill">Fill</label>
+                            <input type="color" name="fillPicker" id="fillPicker" class="picker picker-fill" value="#cccccc" />
+                            <input type="range" id="opacity" min="0" max="100" value="100" />
+                            <div class="opacity-amount" data-opacity="100">100%</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" id="canvasContainer">
+                    <canvas id="canvas" width="1024" height="640"></canvas>
+                </div>
+                <div class="row">
+	                <div class="options">
+	                	<div class="btn-group options-lower">
+	                		<button type="button" id="optionClear" class="btn btn-default btn-lg" style="padding: 4px 12px;"><i class="fa fa-trash-o"></i> Clear</button>
+		                    <button type="button" id="optionUndo" class="btn btn-default btn-lg" style="padding: 4px 12px;"><i class="fa fa-undo"></i> Undo</button>
+		                    <button type="button" id="optionRedo" class="btn btn-default btn-lg" style="padding: 4px 12px;"><i class="fa fa-repeat"></i> Redo</button>
+	                	</div>
+                        <div class="btn-group options-lower">
+                            <button type="button" id="optionSave" class="btn btn-default btn-lg" style="padding: 4px 12px;"><i class="fa fa-save"></i> Save</button>
+                            <button type="button" id="optionOpen" class="btn btn-default btn-lg" style="padding: 4px 12px;"><i class="fa fa-folder-open-o"></i> Open</button>
+                        </div>
+	                </div>
+	            </div>
+            </div>
+            <div class="col-md-2 blank"></div>
+        </div>
+    </div>
+    <input type="text" class="textBox" placeholder="write...">
+    <script src="js/lib/Base.js"></script>
+    <script src="js/lib/Mousetrap.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha256-KXn5puMvxCw+dAYznun+drMdG1IFl3agK0p/pqT9KAo= sha512-2e8qq0ETcfWRI4HJBzQiA3UoyFk6tbNyG+qSaIBZLyW9Xf3sWZHN/lxe9fTh1U45DpPf07yj94KsUHHWe4Yk1A==" crossorigin="anonymous"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/AppCustomization.js"></script>
+    <script src="js/AppChanges.js"></script>
+    <script src="js/AppListener.js"></script>
+    <script src="js/Wideboard.js"></script>
+    <script src="js/Point.js"></script>
+    <script src="js/Shape.js"></script>
+    <script src="js/Rectangle.js"></script>
+    <script src="js/Line.js"></script>
+    <script src="js/Ellipse.js"></script>
+    <script src="js/Pen.js"></script>
+    <script src="js/Text.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,246 @@
+/* #### TITLE OF SITE #### */
+h1.site-title {
+  font-size: 60px;
+  font-weight: 100;
+}
+/* #### CANVAS SETTINGS #### */
+#main #canvas {
+  border: 1px solid black;
+}
+#main #canvas:hover {
+  cursor: crosshair;
+}
+#main .options {
+  padding: 12px 0px;
+}
+#main .options-lower {
+  padding-right: 18px;
+}
+#main .picker {
+  height: 44px;
+  border: 0;
+  background-color: #fff;
+  vertical-align: bottom;
+  margin-bottom: -5px;
+  margin-left: -4px;
+}
+#main .picker-fill {
+  height: 27px;
+  width: 27px;
+  padding: 0;
+  margin-bottom: 0px;
+  margin-left: 3px;
+}
+#main .fill-group {
+  display: inline-block;
+  border: #ccc 1px solid;
+  border-radius: 4px;
+  height: 34px;
+  vertical-align: bottom;
+  padding: 4px 8px;
+}
+#main .fill-group #opacity {
+  display: inline-block;
+  width: 95px;
+  height: 9px;
+}
+#main .fill-group .opacity-amount {
+  display: inline-block;
+  font-size: 12pt;
+}
+#main .fill-group label {
+  margin-left: 4px;
+}
+#main .toolOption {
+  height: 50px;
+}
+#main a .tool {
+  display: inline-block;
+  margin-top: 3px;
+  position: absolute;
+  left: 60px;
+}
+#main .line {
+  background-color: #000;
+  width: 20px;
+  height: 1px;
+  display: inline-block;
+  margin-bottom: 5px;
+}
+#main .line.line-wider {
+  width: 50px;
+}
+#main .line.onepx {
+  height: 1px;
+}
+#main .line.twopx {
+  margin-bottom: 4px;
+  height: 2px;
+}
+#main .line.threepx {
+  margin-bottom: 3px;
+  height: 3px;
+}
+#main .line.fourpx {
+  margin-bottom: 2px;
+  height: 4px;
+}
+#main .line.fivepx {
+  margin-bottom: 3px;
+  height: 5px;
+}
+#main .line.tenpx {
+  margin-bottom: 0px;
+  height: 10px;
+}
+#main #font {
+  display: inline-block;
+}
+#main #font .font-bigger {
+  font-size: 20px;
+}
+#main #font .font-arial {
+  font-family: "Arial";
+}
+#main #font .font-courier-new {
+  font-family: "Courier new";
+}
+#main #font .font-verdana {
+  font-family: "Verdana";
+}
+#main #font .font-comic-sans {
+  font-family: "Comic sans MS";
+}
+/* #### NEED FONT SIZES #### */
+#main .pt1 {
+  font-size: 1pt;
+}
+#main .pt2 {
+  font-size: 2pt;
+}
+#main .pt3 {
+  font-size: 3pt;
+}
+#main .pt4 {
+  font-size: 4pt;
+}
+#main .pt5 {
+  font-size: 5pt;
+}
+#main .pt6 {
+  font-size: 6pt;
+}
+#main .pt7 {
+  font-size: 7pt;
+}
+#main .pt8 {
+  font-size: 8pt;
+}
+#main .pt9 {
+  font-size: 9pt;
+}
+#main .pt10 {
+  font-size: 10pt;
+}
+#main .pt11 {
+  font-size: 11pt;
+}
+#main .pt12 {
+  font-size: 12pt;
+}
+#main .pt13 {
+  font-size: 13pt;
+}
+#main .pt14 {
+  font-size: 14pt;
+}
+#main .pt15 {
+  font-size: 15pt;
+}
+#main .pt16 {
+  font-size: 16pt;
+}
+#main .pt17 {
+  font-size: 17pt;
+}
+#main .pt18 {
+  font-size: 18pt;
+}
+#main .pt19 {
+  font-size: 19pt;
+}
+#main .pt20 {
+  font-size: 20pt;
+}
+#main .pt21 {
+  font-size: 21pt;
+}
+#main .pt22 {
+  font-size: 22pt;
+}
+#main .pt23 {
+  font-size: 23pt;
+}
+#main .pt24 {
+  font-size: 24pt;
+}
+#main .pt25 {
+  font-size: 25pt;
+}
+#main .pt26 {
+  font-size: 26pt;
+}
+#main .pt27 {
+  font-size: 27pt;
+}
+#main .pt28 {
+  font-size: 28pt;
+}
+#main .pt29 {
+  font-size: 29pt;
+}
+#main .pt30 {
+  font-size: 30pt;
+}
+#main .pt31 {
+  font-size: 31pt;
+}
+#main .pt32 {
+  font-size: 32pt;
+}
+#main .pt33 {
+  font-size: 33pt;
+}
+#main .pt34 {
+  font-size: 34pt;
+}
+#main .pt35 {
+  font-size: 35pt;
+}
+#main .pt36 {
+  font-size: 36pt;
+}
+#main .pt37 {
+  font-size: 37pt;
+}
+#main .pt38 {
+  font-size: 38pt;
+}
+#main .pt39 {
+  font-size: 39pt;
+}
+#main .pt40 {
+  font-size: 40pt;
+}
+/* #### SETTINGS FOR TEXTBOX #### */
+input.textBox {
+  border: 0;
+  background-color: rgba(0, 0, 0, 0);
+  position: absolute;
+  top: 50px;
+  left: 150px;
+  font-family: "Arial";
+  font-size: 24px;
+  min-width: 200px;
+}
+/*# sourceMappingURL=style.min.css.map */

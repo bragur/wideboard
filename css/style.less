@@ -1,0 +1,154 @@
+@arial: "Arial";
+@verdana: "Verdana";
+@courier: "Courier new";
+@comicsans: "Comic sans MS";
+
+/* #### TITLE OF SITE #### */
+
+h1 {
+	&.site-title {
+		font-size: 60px;
+		font-weight: 100;
+	}
+}
+
+/* #### CANVAS SETTINGS #### */
+
+#main {
+	#canvas {
+		&:hover {
+			cursor: crosshair;
+		}
+		border: 1px solid black;
+	}
+	.options {
+		padding: 12px 0px;
+	}
+	.options-lower {
+		padding-right: 18px;
+	}
+	.picker {
+		&-fill {
+			height: 27px;
+		    width: 27px;
+		    padding: 0;
+		    margin-bottom: 0px;
+		    margin-left: 3px;
+		}
+		height: 44px;
+	    border: 0;
+	    background-color: #fff;
+	    vertical-align: bottom;
+	    margin-bottom: -5px;
+	    margin-left: -4px;
+	}
+	.fill-group {
+		display: inline-block;
+	    border: #ccc 1px solid;
+	    border-radius: 4px;
+	    height: 34px;
+	    vertical-align: bottom;
+	    padding: 4px 8px;
+	    #opacity {
+	    	    display: inline-block;
+			    width: 95px;
+			    height: 9px;
+	    }
+	    .opacity-amount {
+	    	    display: inline-block;
+    			font-size: 12pt;
+	    }
+	    label {
+	    	margin-left: 4px;
+	    }
+	}
+	.toolOption {
+		height: 50px;
+	}
+	a {
+		.tool {
+			display: inline-block;
+		    margin-top: 3px;
+		    position: absolute;
+		    left: 60px;
+		}
+	}
+	.line {
+		background-color: #000;
+	    width: 20px;
+	    height: 1px;
+	    display: inline-block;
+	    margin-bottom: 5px;
+	    &.line-wider {
+	    	width: 50px;
+	    }
+	    &.onepx {
+			height: 1px;
+		}
+		&.twopx {
+			margin-bottom: 4px;
+			height: 2px;
+		}
+		&.threepx {
+			margin-bottom: 3px;
+			height: 3px;
+		}
+		&.fourpx {
+			margin-bottom: 2px;
+			height: 4px;
+		}
+		&.fivepx {
+			margin-bottom: 3px;
+			height: 5px;
+		}
+		&.tenpx {
+			margin-bottom: 0px;
+			height: 10px;
+		}
+	}
+	#font {
+		display: inline-block;
+		.font-bigger {
+			font-size: 20px;
+		}
+		.font-arial {
+			font-family: @arial;
+		}
+		.font-courier-new {
+			font-family: @courier;
+		}
+		.font-verdana {
+			font-family: @verdana;
+		}
+		.font-comic-sans {
+			font-family: @comicsans;
+		}
+	}
+
+}
+
+/* #### NEED FONT SIZES #### */
+
+.generate-font-sizes(40);
+
+.generate-font-sizes(@n, @i: 1) when (@i =< @n) {
+  #main .pt@{i} {
+    font-size: (@i * 1pt);
+  }
+  .generate-font-sizes(@n, (@i + 1));
+}
+
+/* #### SETTINGS FOR TEXTBOX #### */
+
+.textBox {
+	input& {
+		border: 0;
+		background-color: rgba(0, 0, 0, 0);
+		position: absolute;
+		top: 50px;
+		left: 150px;
+		font-family: @arial;
+		font-size: 24px;
+		min-width: 200px;
+	}
+}
