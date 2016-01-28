@@ -15,5 +15,8 @@ This is a simple drawing board made in JavaScript using the canvas HTML5 element
 
 ### Would be fun
 
+* Use Grunt/Gulp
 * Move multiple items at once
 * Select item and get options for it (change color, fill, opacity, font, etc...)
+* Pen opacity
+* Hold shift for squares, circles and straight lines
