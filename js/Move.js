@@ -1,11 +1,13 @@
 var Move = Shape.extend({
     constructor: function(shape) {
-        console.log("I am with a shape in the move constructor");
         this.base(shape.name, shape.position, shape.color);
+        this.rectOffsetX = 0;
+        this.rectOffsetY = 0;
     },
 
     startDrawing: function(point) {
-        this.startingPosition = point;
+        this.rectOffsetX = point.x - this.position.x;
+        this.rectOffsetY = point.y - this.position.y;
     },
 
     draw: function(canvas) {
@@ -13,12 +15,8 @@ var Move = Shape.extend({
     },
 
     drawing: function(point) {
-        //point.relative = new Point(point.x - this.position.x, point.y - this.position.y);
-        this.position.x = point.x - this.position.x;
-        this.position.y = point.y - this.position.y;
-
-        //this.size.x = point.x - this.position.x;
-        //this.size.y = point.y - this.position.y;
+        this.position.x = point.x - this.rectOffsetX;
+        this.position.y = point.y - this.rectOffsetY;
     },
 
     added: function(canvas) {
