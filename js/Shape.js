@@ -29,8 +29,4 @@ var Shape = Base.extend({
 
     },
 
-    isInRect: function(point) {
-        console.log("this.position.x: " + this.position.x + " this.position.y: " + this.position.y +
-            " this.size.x: " + this.size.x + " this.size.y: " + this.size.y);
-    },
 });

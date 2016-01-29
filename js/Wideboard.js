@@ -19,14 +19,15 @@ function Wideboard(canvasSelector) {
             for (var i = self.shapes.length - 1; i >= 0 && shape === null; i--) {
                 var rect = new Rect(self.shapes[i].position, self.shapes[i].size);
                 if (rect.isInRect(startingPosition)) {
-                    console.log("Is in rect baby!");
                     shape = new self.shapeConstructor(self.shapes[i]);
                 }
             }
         }
 
-        shape.startDrawing(startingPosition, self.canvasContext);
-        startingPosition.log('drawing start');
+        if (shape !== null) {
+            shape.startDrawing(startingPosition, self.canvasContext);
+            startingPosition.log('drawing start');
+        }
 
         var drawing = function(e) {
             var position = self.getEventPoint(e);
@@ -55,10 +56,12 @@ function Wideboard(canvasSelector) {
         };
 
         // Need drawing and drawingStop to be active unless I stop
-        self.canvas.on({
+        if (shape !== null) {
+            self.canvas.on({
             mousemove: drawing,
             mouseup: drawingStop
-        });
+            });
+        }
     };
 
     self.mousedown = function(e) {
