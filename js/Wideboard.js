@@ -1,9 +1,10 @@
 function Wideboard(canvasSelector) {
+    'use strict';
     var self = this;
 
     self.getEventPoint = function(e) {
         return new Point(e.pageX - self.canvasOffset.x, e.pageY - self.canvasOffset.y);
-    }
+    };
 
     self.drawingStart = function(e) {
         if (self.shapes[self.shapes.length - 1] === 'CLEARED') {
@@ -170,7 +171,7 @@ function Wideboard(canvasSelector) {
         self.color = '#000000';
         self.fillColor = 'rgba(0,0,0,0.0)';
         self.fillOpacity = 0.0;
-        self.lastFillColor = 'rgba(204,204,204,1.0)';
+        self.lastFillColor = utils.hex2rgb('#cccccc, 1.0');
         self.lineWidth = 1;
         self.font = "normal 12px Arial";
         self.shapeConstructor = Pen;

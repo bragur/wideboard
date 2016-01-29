@@ -6,7 +6,7 @@ var Text = Shape.extend({
     },
 
     draw: function(canvas) {
-
+        this.drawText(canvas);
         this.base(canvas);
     },
 

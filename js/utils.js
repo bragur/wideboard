@@ -11,12 +11,10 @@ var utils = {
     hex2rgb: function(hex, opacity) {
         hex = hex.replace(/[^0-9A-F]/gi, '');
         var bigint = parseInt(hex, 16);
-        console.log(bigint);
         var r = (bigint >> 16) & 255;
         var g = (bigint >> 8) & 255;
         var b = bigint & 255;
         var output = 'rgba(' + r + ',' + g + ',' + b + ',' + opacity / 100 + ')';
-        console.log("hex2rgb", output);
 
         return output;
     },
