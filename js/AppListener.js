@@ -125,4 +125,11 @@ var AppListener = {
         'use strict';
         $('input.textBox').autoSize();
     },
+
+    saveListener: function() {
+        'use strict';
+        $('#save').on('click', function() {
+            app.saveToApi();
+        });
+    },
 };

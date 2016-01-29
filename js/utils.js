@@ -18,6 +18,47 @@ var utils = {
 
         return output;
     },
+
+    ajaxSaveParams: function(user, shapes, title, template) {
+        var stringifiedArray = JSON.stringyf(shapes);
+        var parameters = {
+            "user": user,
+            "name": title,
+            "content": stringifiedArray,
+            "template": template // ?
+        };
+
+        return parameters;
+    },
+
+    ajaxSaveCall: function(apiUrl, parameters) {
+        $.ajax({
+            type: "POST",
+            contentType: "application/json; charset=utf-8",
+            url: apiUrl,
+            data: parameters,
+            dataType: "jsonp",
+            crossDomain: true,
+            success: function(data) {
+                return true;
+            },
+            error: function(xhr, err) {
+                return false;
+            }
+        });
+
+        return false;
+    },
+
+    uploadShapes: function(shapes, user, apiUrl, title, template) {
+        var parameters = ajaxSaveParams(user, shapes, title, template);
+
+        if(ajaxSaveCall(apiUrl, parameters)) {
+            console.log("Save was successful!");
+        } else {
+            console.log("Save was unsuccessful...");
+        }
+    },
 }
 
 // With some help from http://stackoverflow.com/a/32337430
