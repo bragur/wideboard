@@ -12,7 +12,12 @@ function Wideboard(canvasSelector) {
         }
 
         var startingPosition = self.getEventPoint(e);
-        var shape = new self.shapeConstructor(startingPosition, self.color, self.fillColor, self.lineWidth, self.font);
+
+        if (!self.selectionTool) {
+            var shape = new self.shapeConstructor(startingPosition, self.color, self.fillColor, self.lineWidth, self.font);
+        } else {
+            console.log("About to move shit");
+        }
 
         shape.startDrawing(startingPosition, self.canvasContext);
         startingPosition.log('drawing start');
@@ -154,7 +159,7 @@ function Wideboard(canvasSelector) {
 
     self.toggleVisibles = function(tool) {
         AppChanges.checkVisibles(tool);
-    }
+    };
 
     self.init = function() {
         // Init App
@@ -164,6 +169,7 @@ function Wideboard(canvasSelector) {
             mousedown: self.mousedown
         });
         self.shapeConstructor = null;
+        self.selectionTool = false;
         self.canvasContext = canvas.getContext("2d");
         self.shapes = new Array();
         self.history = new Array();

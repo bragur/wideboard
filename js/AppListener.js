@@ -20,6 +20,7 @@ var AppListener = {
             console.log("Changing to " + newTool);
             AppChanges.changeTool(newTool);
             AppChanges.checkVisibles(newTool);
+            app.selectionTool = false;
 
             switch (newTool) {
                 case 'Rectangle':
@@ -39,6 +40,7 @@ var AppListener = {
                     break;
                 case 'Move':
                     app.shapeConstructor = Move;
+                    app.selectionTool = true;
                     break;
                 default:
                     break;
