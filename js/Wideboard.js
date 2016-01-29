@@ -12,11 +12,17 @@ function Wideboard(canvasSelector) {
         }
 
         var startingPosition = self.getEventPoint(e);
-
+        var shape = null;
         if (!self.selectionTool) {
-            var shape = new self.shapeConstructor(startingPosition, self.color, self.fillColor, self.lineWidth, self.font);
+            shape = new self.shapeConstructor(startingPosition, self.color, self.fillColor, self.lineWidth, self.font);
         } else {
-            console.log("About to move shit");
+            for (var i = self.shapes.length - 1; i >= 0 && shape === null; i--) {
+                var rect = new Rect(self.shapes[i].position, self.shapes[i].size);
+                if (rect.isInRect(startingPosition)) {
+                    console.log("Is in rect baby!");
+                    shape = new self.shapeConstructor(self.shapes[i]);
+                }
+            }
         }
 
         shape.startDrawing(startingPosition, self.canvasContext);

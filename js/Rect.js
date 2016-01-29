@@ -1,6 +1,6 @@
 function Rect(position, size) {
-	this.position: position;
-	this.size: size;
+	this.position = position;
+	this.size = size;
 
 	this.isInRect = function(point) {
 		if (this.position.x < point.x && this.position.y < point.y) {

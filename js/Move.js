@@ -1,17 +1,24 @@
 var Move = Shape.extend({
     constructor: function(shape) {
-        
+        console.log("I am with a shape in the move constructor");
+        this.base(shape.name, shape.position, shape.color);
+    },
+
+    startDrawing: function(point) {
+        this.startingPosition = point;
     },
 
     draw: function(canvas) {
-        this.drawRectangle(canvas);
-
         this.base(canvas);
     },
 
     drawing: function(point) {
-        this.size.x = point.x - this.position.x;
-        this.size.y = point.y - this.position.y;
+        //point.relative = new Point(point.x - this.position.x, point.y - this.position.y);
+        this.position.x = point.x - this.position.x;
+        this.position.y = point.y - this.position.y;
+
+        //this.size.x = point.x - this.position.x;
+        //this.size.y = point.y - this.position.y;
     },
 
     added: function(canvas) {
@@ -26,13 +33,4 @@ var Move = Shape.extend({
         }
     },
 
-    drawRectangle: function(canvas) {
-        canvas.strokeStyle = this.color;
-        canvas.lineWidth = this.lineWidth;
-        if (this.fillColor !== undefined) {
-            canvas.fillStyle = this.fillColor;
-            canvas.fillRect(this.position.x, this.position.y, this.size.x, this.size.y);
-        }
-        canvas.strokeRect(this.position.x, this.position.y, this.size.x, this.size.y);
-    }
 });
