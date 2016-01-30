@@ -1,4 +1,8 @@
 var AppChanges = {
+    init: function() {
+        this.enableControlsAfterDialogDismiss();
+    },
+
     disableUndo: function() {
         $('#optionUndo').attr('disabled', 'disabled');
     },
@@ -154,6 +158,15 @@ var AppChanges = {
         $('#currentTool').text(' ' + tool);
     },
 
+    enableControlsAfterDialogDismiss: function() {
+        var windowHeight = $(window).height();
+        $('#fake-screen').css('top', -windowHeight);
+    },
+
+    disableAllButDialog: function() {
+        $('#fake-screen').css('top', 0);
+    },
+
     getText: function(position) {
         $('input.textBox').prop('top', position.x).prop('left', position.y);
     },
@@ -166,6 +179,7 @@ var AppChanges = {
         var newLeft = newPlacement.x + "px";
         var newTop = newPlacement.y + "px";
         utils.blurElement('#main', 0, 4, 200);
+        this.disableAllButDialog();
         $dialog.animate({left: newLeft}, 200);
     },
 
@@ -176,6 +190,7 @@ var AppChanges = {
         var shadowWidth = parseInt($dialog.css('box-shadow').split(' ')[5].replace("px", ""));
         var newLeft = (-dialogWidth-shadowWidth*2) + "px";
         $dialog.animate({left: newLeft}, 100);
+        this.enableControlsAfterDialogDismiss();
         utils.blurElement('#main', 4, 0, 100);
         this.resetDialog = function(timeout) {
             setTimeout(function() {
@@ -194,11 +209,10 @@ var AppChanges = {
         var sizeOfDialog = new Box($dialog.width(), $dialog.height());
         var newPlacement = utils.calculateCenter(sizeOfDialog);
         var newRight = newPlacement.x + "px";
+        AppChanges.disableAllButDialog();
         utils.blurElement('#main', 0, 4, 200);
-        $dialog.animate({right: newRight}, 200);
-        console.log(data);
-        console.log(utils.fixOpenData(data));
         $('#open-file-list').select2({data: utils.fixOpenData(data)});
+        $dialog.animate({right: newRight}, 200);
     },
 
     closeOpenDialog: function() {
@@ -208,6 +222,7 @@ var AppChanges = {
         var shadowWidth = parseInt($dialog.css('box-shadow').split(' ')[5].replace("px", ""));
         var newRight  = (-dialogWidth-shadowWidth*2) + "px";
         $dialog.animate({right: newRight}, 100);
+        this.enableControlsAfterDialogDismiss();
         utils.blurElement('#main', 4, 0, 100);
     },
 };

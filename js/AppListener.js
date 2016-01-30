@@ -165,5 +165,5 @@ var AppListener = {
         $('#cancelOpen').on('click', function() {
             AppChanges.closeOpenDialog();
         });
-    }
+    },
 };

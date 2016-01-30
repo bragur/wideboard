@@ -198,6 +198,7 @@ function Wideboard(canvasSelector) {
         self.toggleVisibles('Pen');
         AppCustomization.init();
         AppListener.init();
+        AppChanges.init();
 
         self.apiUser = 'bragi14';
         self.apiSaveUrl = 'http://whiteboard.apphb.com/Home/Save';
