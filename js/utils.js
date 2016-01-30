@@ -31,7 +31,7 @@ var utils = {
         return parameters;
     },
 
-    ajaxSaveCall: function(apiUrl, parameters) {
+    ajaxSaveCall: function(apiUrl, parameters, then) {
         console.log(parameters);
 
         $.ajax({
@@ -43,11 +43,10 @@ var utils = {
             crossDomain: true,
             success: function(data) {
                 console.log("Success: ", data);
-                return true;
+                then();
             },
             error: function(xhr, err) {
                 console.log("Error: ", xhr, err);
-                return false;
             }
         });
     },
@@ -70,14 +69,27 @@ var utils = {
         });
     },
 
-    uploadShapes: function(shapes, user, apiUrl, title, template) {
+    uploadShapes: function(shapes, user, apiUrl, title, template, then) {
         var parameters = this.ajaxSaveParams(user, shapes, title, template);
+        this.ajaxSaveCall(apiUrl, parameters, then);
+    },
 
-        if(this.ajaxSaveCall(apiUrl, parameters)) {
-            console.log("Save was successful!");
-        } else {
-            console.log("Save was unsuccessful...");
-        }
+    downloadShapes: function(apiUrl, id, getDrawingHandler) {
+        var parameters = {"id": id};
+
+        $.ajax({
+            type: "GET",
+            url: apiUrl,
+            data: parameters,
+            dataType: "jsonp",
+            crossDomain: true,
+            success: function(data) {
+                getDrawingHandler(data);
+            },
+            error: function(xhr, err) {
+                getDrawingHandler("error");
+            }
+        });
     },
 
     calculateCenter: function(boxSize) {
@@ -113,6 +125,40 @@ var utils = {
 
         return items;
     },
+
+    convertJsonShapes: function(data) {
+        var arr = $.parseJSON(data);
+        var newShapes = new Array();
+
+        for (var i = 0; i < arr.length; i++) {
+            var position = new Point(arr[i].position.x, arr[i].position.y);
+            console.log(arr[i].name);
+            switch(arr[i].name) {
+                case 'Rectangle':
+                    var shape = new Rectangle(position, arr[i].color, arr[i].fillColor, arr[i].lineWidth);
+                    break;
+                case 'Ellipse':
+                    var shape = new Ellipse(position, arr[i].color, arr[i].fillColor, arr[i].lineWidth);
+                    break;
+                case 'Circle':
+                    var shape = new Ellipse(position, arr[i].color, arr[i].fillColor, arr[i].lineWidth);
+                    break;
+                case 'Line':
+                    var shape = new Line(position, arr[i].color, arr[i].fillColor, arr[i].lineWidth);
+                    break;
+                case 'Pen':
+                    var shape = new Pen(position, arr[i].color, arr[i].fillColor, arr[i].lineWidth);
+                    break;
+                default:
+                    var shape = null;
+                    break;
+            }
+            shape.size = new Point(arr[i].size.x, arr[i].size.y);
+            newShapes.push(shape);
+        }
+
+        return newShapes;
+    }
 }
 
 // With some help from http://stackoverflow.com/a/32337430

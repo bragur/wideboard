@@ -162,7 +162,7 @@ function Wideboard(canvasSelector) {
     };
 
     self.saveToApi = function(title, template) {
-        utils.uploadShapes(self.shapes, self.apiUser, self.apiSaveUrl, title, template);
+        utils.uploadShapes(self.shapes, self.apiUser, self.apiSaveUrl, title, template, AppChanges.closeSaveDialogAfterSave);
     };
 
     self.getListFromApi = function() {
@@ -171,7 +171,7 @@ function Wideboard(canvasSelector) {
 
     self.getDrawingFromApi = function(id) {
         // Do stuff
-        utils.downloadShapes(self.apiUser, self.apiGetDrawingUrl, id);
+        utils.downloadShapes(self.apiGetDrawingUrl, id, AppChanges.loadNewDrawing);
     };
 
     self.init = function() {

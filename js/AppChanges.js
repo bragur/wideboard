@@ -190,7 +190,7 @@ var AppChanges = {
         var shadowWidth = parseInt($dialog.css('box-shadow').split(' ')[5].replace("px", ""));
         var newLeft = (-dialogWidth-shadowWidth*2) + "px";
         $dialog.animate({left: newLeft}, 100);
-        this.enableControlsAfterDialogDismiss();
+        AppChanges.enableControlsAfterDialogDismiss();
         utils.blurElement('#main', 4, 0, 100);
         this.resetDialog = function(timeout) {
             setTimeout(function() {
@@ -200,7 +200,17 @@ var AppChanges = {
                 $('#save-filename').val('');
             }, timeout
         )};
-        this.resetDialog(200);
+        AppChanges.resetDialog(200);
+    },
+
+    closeSaveDialogAfterSave: function() {
+        $('#save-success').fadeIn();
+        var fadeout = function() {
+            $('#save-template').fadeOut();
+            AppChanges.closeSaveDialog()
+            $('#save-template').show();
+        };
+        setTimeout(fadeout(), 700);
     },
 
     showOpenDialog: function(success, data, error) {
@@ -224,5 +234,16 @@ var AppChanges = {
         $dialog.animate({right: newRight}, 100);
         this.enableControlsAfterDialogDismiss();
         utils.blurElement('#main', 4, 0, 100);
+    },
+
+    loadNewDrawing: function(data) {
+        console.log(app.shapes);
+        var newShapes = utils.convertJsonShapes(data.WhiteboardContents);
+        console.log(newShapes);
+        app.shapes = newShapes;
+        console.log(app.shapes);
+        app.resetHistoryButtons();
+        app.redraw();
+        AppChanges.closeOpenDialog();
     },
 };

@@ -2,7 +2,7 @@ var Ellipse = Shape.extend({
     constructor: function(position, color, fillColor, lineWidth) {
         this.lineWidth = lineWidth;
         this.fillColor = fillColor;
-        this.base("Circle", position, color);
+        this.base("Ellipse", position, color);
     },
 
     draw: function(canvas) {
