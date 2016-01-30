@@ -20,18 +20,20 @@ var utils = {
     },
 
     ajaxSaveParams: function(user, shapes, title, template) {
-        var stringifiedArray = JSON.stringyf(shapes);
+        var stringifiedArray = JSON.stringify(shapes);
         var parameters = {
             "user": user,
             "name": title,
             "content": stringifiedArray,
-            "template": template // ?
+            "template": template
         };
 
         return parameters;
     },
 
     ajaxSaveCall: function(apiUrl, parameters) {
+        console.log(parameters);
+
         $.ajax({
             type: "POST",
             contentType: "application/json; charset=utf-8",
@@ -40,20 +42,38 @@ var utils = {
             dataType: "jsonp",
             crossDomain: true,
             success: function(data) {
+                console.log("Success: ", data);
                 return true;
             },
             error: function(xhr, err) {
+                console.log("Error: ", xhr, err);
                 return false;
             }
         });
+    },
 
-        return false;
+    downloadList: function(user, apiUrl, getListHandler) {
+        var parameters = { "user": user, "template": false };
+
+        $.ajax({
+            type: "GET",
+            url: apiUrl,
+            data: parameters,
+            dataType: "jsonp",
+            crossDomain: true,
+            success: function(data) {
+                getListHandler(true, data);
+            },
+            error: function(xhr, err) {
+                getListHandler(false, xhr, err);
+            }
+        });
     },
 
     uploadShapes: function(shapes, user, apiUrl, title, template) {
-        var parameters = ajaxSaveParams(user, shapes, title, template);
+        var parameters = this.ajaxSaveParams(user, shapes, title, template);
 
-        if(ajaxSaveCall(apiUrl, parameters)) {
+        if(this.ajaxSaveCall(apiUrl, parameters)) {
             console.log("Save was successful!");
         } else {
             console.log("Save was unsuccessful...");
@@ -64,6 +84,34 @@ var utils = {
         var windowWidthCenter = $(window).width()/2;
         var windowHeightCenter = $(window).height()/2;
         return new Point(windowWidthCenter - boxSize.center().x, windowHeightCenter - boxSize.center().y);
+    },
+
+    blurElement: function(element, from, to, duration, log) {
+        $({blurRadius: from}).animate({blurRadius: to}, {
+            duration: duration,
+            easing: 'swing', // or "linear"
+                             // use jQuery UI or Easing plugin for more options
+            step: function() {
+                if (log) {
+                    console.log(this.blurRadius);
+                }
+                $(element).css({
+                    "-webkit-filter": "blur("+this.blurRadius+"px)",
+                    "filter": "blur("+this.blurRadius+"px)"
+                });
+            }
+        });
+    },
+
+    fixOpenData: function(data) {
+        var items = new Array();
+        for (var i = 0; i < data.length; i++) {
+            var date = eval("new " + data[i].DateAdded.replace(/\//g, ""));
+            var text = data[i].WhiteboardTitle + " [" + date.toString('dd/MM/yyyy HH:mm:ss') + "]";
+            items.push({"id": data[i].ID, "text": text});
+        }
+
+        return items;
     },
 }
 

@@ -162,11 +162,11 @@ function Wideboard(canvasSelector) {
     };
 
     self.saveToApi = function(title, template) {
-        utils.uploadShapes(shapes, self.apiUser, self.apiSaveUrl, title, template);
+        utils.uploadShapes(self.shapes, self.apiUser, self.apiSaveUrl, title, template);
     };
 
     self.getListFromApi = function() {
-        utils.downloadList(self.apiUser, self.apiGetListUrl);
+        utils.downloadList(self.apiUser, self.apiGetListUrl, AppChanges.showOpenDialog);
     };
 
     self.getDrawingFromApi = function(id) {

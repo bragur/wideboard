@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.min.css">
     <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="bower_components/select2/dist/css/select2.min.css">
 </head>
 
 <body>
@@ -168,13 +169,13 @@
             <div class="col-md-2 blank"></div>
         </div>
     </div>
-    <div id="save-dialog">
+    <div id="save-dialog" class="dialog">
         <h2>Save this piece of art<br><small>Let's face it, we're making history here</small></h2>
         <div class="input-group">
             <span class="input-group-addon">
-                <input type="checkbox" id="save-template" aria-label="..."> Template
+                <input id="save-template" type="checkbox" id="save-template" aria-label="..."> Template
             </span>
-            <input type="text" class="form-control" placeholder="Name of file..." aria-label="...">
+            <input id="save-filename" type="text" class="form-control" placeholder="Name of file..." aria-label="...">
         </div>
         <div class="input-group">
             <button id="save" class="btn btn-default btn-lg"><i class="fa fa-save"></i> 
@@ -182,11 +183,21 @@
             <button id="cancelSave" class="btn btn-default btn-lg">Cancel</button>
         </div>
     </div>
+    <div id="open-dialog" class="dialog">
+        <h2>Let's open some of these masterpieces</h2>
+        <select id="open-file-list"></select>
+        <div class="input-group">
+            <button id="open" class="btn btn-default btn-lg"><i class="fa fa-folder-open"></i> 
+            Open</button>
+            <button id="cancelOpen" class="btn btn-default btn-lg">Cancel</button>
+        </div>
+    </div>
     <input type="text" class="textBox" placeholder="write..." style="display: none;">
     <script src="js/lib/Base.js"></script>
     <script src="js/lib/Mousetrap.js"></script>
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="bower_components/select2/dist/js/select2.min.js"></script>
     <script src="js/utils.js"></script>
     <script src="js/AppCustomization.js"></script>
     <script src="js/AppChanges.js"></script>

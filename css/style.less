@@ -153,14 +153,13 @@ h1 {
 	}
 }
 
-#save-dialog {
+.dialog {
 	border: solid 1px black;
     box-shadow: 0px 0px 30px #ccc;
     border-radius: 5px;
     background-color: rgba(255, 255, 255, 0.9);
     z-index: 999;
     position: fixed;
-    left: -600px;
     top: 300px;
     width: 500px;
     height: 254px;
@@ -169,6 +168,12 @@ h1 {
     align-items: center;
     flex-direction: column;
     padding: 20px;
+    #save-dialog& {
+    	left: -600px;
+    }
+    #open-dialog& {
+    	right: -600px;
+    }
     h2 {
     	text-align: center;
     }

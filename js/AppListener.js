@@ -14,6 +14,8 @@ var AppListener = {
         this.saveDialogListener();
         this.save();
         this.cancelSave();
+        this.openDialogListener();
+        this.cancelOpen();
     },
 
     toolChangeListener: function() {
@@ -118,7 +120,6 @@ var AppListener = {
             var mode = $(this).is(':checked');
             var color = $('#fillPicker').val();
             var opacity = $('#opacity').val();
-            // var opacity = $('.opacity-amount').data('opacity');
             console.log("Color:", color, "Opacity:", opacity);
             app.toggleFill(mode, color, opacity);
         });
@@ -139,8 +140,8 @@ var AppListener = {
     save: function() {
         'use strict';
         $('#save').on('click', function() {
-            var title;
-            var template;
+            var title = $('#save-filename').val();
+            var template = $('#save-template').is(':checked');
             app.saveToApi(title, template);
         });
     },
@@ -151,4 +152,18 @@ var AppListener = {
             AppChanges.closeSaveDialog();
         });
     },
+
+    openDialogListener: function() {
+        'use strict';
+        $('#optionOpen').on('click', function() {
+            app.getListFromApi();
+        });
+    },
+
+    cancelOpen: function() {
+        'use strict';
+        $('#cancelOpen').on('click', function() {
+            AppChanges.closeOpenDialog();
+        });
+    }
 };

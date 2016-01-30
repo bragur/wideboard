@@ -162,8 +162,11 @@ var AppChanges = {
         console.log("Gonna open this save dialog thing");
         var $dialog = $('#save-dialog');
         var sizeOfDialog = new Box($dialog.width(), $dialog.height());
-        var newPlacement = utils.calculateCenter(sizeOfDialog).x + "px";
-        $dialog.animate({left: newPlacement}, 200);
+        var newPlacement = utils.calculateCenter(sizeOfDialog);
+        var newLeft = newPlacement.x + "px";
+        var newTop = newPlacement.y + "px";
+        utils.blurElement('#main', 0, 4, 200);
+        $dialog.animate({left: newLeft}, 200);
     },
 
     closeSaveDialog: function() {
@@ -171,7 +174,40 @@ var AppChanges = {
         var $dialog = $('#save-dialog');
         var dialogWidth = $dialog.width();
         var shadowWidth = parseInt($dialog.css('box-shadow').split(' ')[5].replace("px", ""));
-        var newPlacement = (-dialogWidth-shadowWidth*2) + "px";
-        $dialog.animate({left: newPlacement}, 100);
-    }
+        var newLeft = (-dialogWidth-shadowWidth*2) + "px";
+        $dialog.animate({left: newLeft}, 100);
+        utils.blurElement('#main', 4, 0, 100);
+        this.resetDialog = function(timeout) {
+            setTimeout(function() {
+                if ($('#save-template').is(':checked')) {
+                    $('#save-template').trigger('click');
+                }
+                $('#save-filename').val('');
+            }, timeout
+        )};
+        this.resetDialog(200);
+    },
+
+    showOpenDialog: function(success, data, error) {
+        console.log("Gonna show some items here");
+        var $dialog = $('#open-dialog');
+        var sizeOfDialog = new Box($dialog.width(), $dialog.height());
+        var newPlacement = utils.calculateCenter(sizeOfDialog);
+        var newRight = newPlacement.x + "px";
+        utils.blurElement('#main', 0, 4, 200);
+        $dialog.animate({right: newRight}, 200);
+        console.log(data);
+        console.log(utils.fixOpenData(data));
+        $('#open-file-list').select2({data: utils.fixOpenData(data)});
+    },
+
+    closeOpenDialog: function() {
+        console.log("Gonna close this open dialog thingy here");
+        var $dialog = $('#open-dialog');
+        var dialogWidth = $dialog.width();
+        var shadowWidth = parseInt($dialog.css('box-shadow').split(' ')[5].replace("px", ""));
+        var newRight  = (-dialogWidth-shadowWidth*2) + "px";
+        $dialog.animate({right: newRight}, 100);
+        utils.blurElement('#main', 4, 0, 100);
+    },
 };
