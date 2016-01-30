@@ -59,6 +59,12 @@ var utils = {
             console.log("Save was unsuccessful...");
         }
     },
+
+    calculateCenter: function(boxSize) {
+        var windowWidthCenter = $(window).width()/2;
+        var windowHeightCenter = $(window).height()/2;
+        return new Point(windowWidthCenter - boxSize.center().x, windowHeightCenter - boxSize.center().y);
+    },
 }
 
 // With some help from http://stackoverflow.com/a/32337430

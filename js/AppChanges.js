@@ -111,6 +111,14 @@ var AppChanges = {
                 function() {
                     $(this).css('cursor', 'default'); // out
                 });
+        } else if (tool === 'Move') {
+            $('#canvas').hover(
+                function() {
+                    $(this).css('cursor', 'move');
+                },
+                function() {
+                    $(this).css('cursor', 'default');
+                });
         } else {
             $('#canvas').hover(
                 function() {
@@ -149,4 +157,21 @@ var AppChanges = {
     getText: function(position) {
         $('input.textBox').prop('top', position.x).prop('left', position.y);
     },
+
+    openSaveDialog: function() {
+        console.log("Gonna open this save dialog thing");
+        var $dialog = $('#save-dialog');
+        var sizeOfDialog = new Box($dialog.width(), $dialog.height());
+        var newPlacement = utils.calculateCenter(sizeOfDialog).x + "px";
+        $dialog.animate({left: newPlacement}, 200);
+    },
+
+    closeSaveDialog: function() {
+        console.log("Gonna close this save dialog thing");
+        var $dialog = $('#save-dialog');
+        var dialogWidth = $dialog.width();
+        var shadowWidth = parseInt($dialog.css('box-shadow').split(' ')[5].replace("px", ""));
+        var newPlacement = (-dialogWidth-shadowWidth*2) + "px";
+        $dialog.animate({left: newPlacement}, 100);
+    }
 };

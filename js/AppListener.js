@@ -11,6 +11,9 @@ var AppListener = {
         this.lineWidthListener();
         this.textWidthListener();
         this.opacityListener();
+        this.saveDialogListener();
+        this.save();
+        this.cancelSave();
     },
 
     toolChangeListener: function() {
@@ -126,10 +129,26 @@ var AppListener = {
         $('input.textBox').autoSize();
     },
 
-    saveListener: function() {
+    saveDialogListener: function() {
+        'use strict';
+        $('#optionSave').on('click', function() {
+            AppChanges.openSaveDialog();
+        });
+    },
+
+    save: function() {
         'use strict';
         $('#save').on('click', function() {
-            app.saveToApi();
+            var title;
+            var template;
+            app.saveToApi(title, template);
+        });
+    },
+
+    cancelSave: function() {
+        'use strict';
+        $('#cancelSave').on('click', function() {
+            AppChanges.closeSaveDialog();
         });
     },
 };
