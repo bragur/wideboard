@@ -160,6 +160,12 @@ var utils = {
         }
 
         return newShapes;
+    },
+
+    save: function() {
+        var title = $('#save-filename').val();
+        var template = $('#save-template').is(':checked');
+        app.saveToApi(title, template);
     }
 }
 

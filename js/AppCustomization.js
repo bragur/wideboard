@@ -2,6 +2,7 @@ var AppCustomization = {
     init: function() {
         this.resizeCanvas();
         this.setHotKeys();
+        this.enableSaveAndOpen();
     },
 
     resizeCanvas: function() {
@@ -17,16 +18,6 @@ var AppCustomization = {
         Mousetrap.bind('mod+shift+z', function() {
             app.redo();
             return false;
-        });
-        Mousetrap.bind('mod+s', function() {
-            console.log('save');
-            return false;
-            // app.save();
-        });
-        Mousetrap.bind('mod+o', function() {
-            console.log('open');
-            return false;
-            // app.open();
         });
         Mousetrap.bind('c', function() {
             console.log('Open color picker');
@@ -59,5 +50,27 @@ var AppCustomization = {
 
     disableCancel: function(dialog) {
         Mousetrap.unbind('esc');
+    },
+
+    disableSaveAndOpen: function() {
+        Mousetrap.bind('mod+s', function() {
+            console.log("Not saving shit");
+            return false;
+        });
+        Mousetrap.bind('mod+o', function() {
+            console.log("Not opening shit");
+            return false;
+        });
+    },
+
+    enableSaveAndOpen: function() {
+        Mousetrap.bind('mod+s', function() {
+            AppChanges.openSaveDialog();
+            return false;
+        });
+        Mousetrap.bind('mod+o', function() {
+            app.getListFromApi();        
+            return false;
+        });
     },
 };

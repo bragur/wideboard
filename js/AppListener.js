@@ -146,9 +146,7 @@ var AppListener = {
     save: function() {
         'use strict';
         $('#save').on('click', function() {
-            var title = $('#save-filename').val();
-            var template = $('#save-template').is(':checked');
-            app.saveToApi(title, template);
+            utils.save();
         });
     },
 

@@ -174,6 +174,7 @@ var AppChanges = {
     openSaveDialog: function() {
         console.log("Gonna open this save dialog thing");
         AppCustomization.enableCancel('save');
+        AppCustomization.disableSaveAndOpen();
         var $dialog = $('#save-dialog');
         $('#save-filename').removeAttr('disabled');
         var sizeOfDialog = new Box($dialog.width(), $dialog.height());
@@ -188,6 +189,7 @@ var AppChanges = {
     closeSaveDialog: function() {
         console.log("Gonna close this save dialog thing");
         AppCustomization.disableCancel();
+        AppCustomization.enableSaveAndOpen();
         var $dialog = $('#save-dialog');
         var dialogWidth = $dialog.width();
         var shadowWidth = parseInt($dialog.css('box-shadow').split(' ')[5].replace("px", ""));
@@ -216,6 +218,7 @@ var AppChanges = {
     showOpenDialog: function(success, data, error) {
         console.log("Gonna show some items here");
         AppCustomization.enableCancel('open');
+        AppCustomization.disableSaveAndOpen();
         var $dialog = $('#open-dialog');
         var sizeOfDialog = new Box($dialog.width(), $dialog.height());
         var newPlacement = utils.calculateCenter(sizeOfDialog);
@@ -229,6 +232,7 @@ var AppChanges = {
     closeOpenDialog: function() {
         console.log("Gonna close this open dialog thingy here");
         AppCustomization.disableCancel();
+        AppCustomization.enableSaveAndOpen();
         var $dialog = $('#open-dialog');
         var dialogWidth = $dialog.width();
         var shadowWidth = parseInt($dialog.css('box-shadow').split(' ')[5].replace("px", ""));
