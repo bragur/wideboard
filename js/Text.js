@@ -24,10 +24,8 @@ var Text = Shape.extend({
 
     added: function(canvas) {
         this.size = new Point(canvas.measureText(this.string).width + 50, 50);
-        this.position.y -= 50 - this.sizeOffset;
-        console.log(this.position, this.size);
+        this.position.y -= 20 + this.sizeOffset;
         this.offset = true;
-        console.log(parseInt(this.font.split(" ")[1].replace("px", "")));
     },
 
     drawText: function(canvas) {
@@ -35,7 +33,7 @@ var Text = Shape.extend({
         canvas.fillStyle = this.color;
         this.sizeOffset = parseInt(this.font.split(" ")[1].replace("px", "")) - 7;
         if (this.offset) {
-            canvas.fillText(this.string, this.position.x, this.position.y + 50 + this.sizeOffset);
+            canvas.fillText(this.string, this.position.x, this.position.y + 20 + this.sizeOffset);
         } else {
             canvas.fillText(this.string, this.position.x, this.position.y + this.sizeOffset);
         }
