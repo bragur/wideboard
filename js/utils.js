@@ -119,7 +119,8 @@ var utils = {
         var items = new Array();
         for (var i = 0; i < data.length; i++) {
             var date = eval("new " + data[i].DateAdded.replace(/\//g, ""));
-            var text = data[i].WhiteboardTitle + " [" + date.toString('dd/MM/yyyy HH:mm:ss') + "]";
+            var mom = new moment(date.toString());
+            var text = data[i].WhiteboardTitle + " [ " + mom.calendar() + " ]";
             items.push({"id": data[i].ID, "text": text});
         }
 
