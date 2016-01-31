@@ -160,8 +160,8 @@ h1 {
 .generate-font-sizes(40);
 
 .generate-font-sizes(@n, @i: 1) when (@i =< @n) {
-  #main .pt@{i} {
-    font-size: (@i * 1px);
+  .pt@{i} {
+    font-size: (@i * 1px) !important;
   }
   .generate-font-sizes(@n, (@i + 1));
 }

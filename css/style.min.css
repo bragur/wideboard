@@ -136,125 +136,125 @@ h1.site-title {
   font-family: "Comic sans MS";
 }
 /* #### NEED FONT SIZES #### */
-#main .pt1 {
-  font-size: 1px;
+.pt1 {
+  font-size: 1px !important;
 }
-#main .pt2 {
-  font-size: 2px;
+.pt2 {
+  font-size: 2px !important;
 }
-#main .pt3 {
-  font-size: 3px;
+.pt3 {
+  font-size: 3px !important;
 }
-#main .pt4 {
-  font-size: 4px;
+.pt4 {
+  font-size: 4px !important;
 }
-#main .pt5 {
-  font-size: 5px;
+.pt5 {
+  font-size: 5px !important;
 }
-#main .pt6 {
-  font-size: 6px;
+.pt6 {
+  font-size: 6px !important;
 }
-#main .pt7 {
-  font-size: 7px;
+.pt7 {
+  font-size: 7px !important;
 }
-#main .pt8 {
-  font-size: 8px;
+.pt8 {
+  font-size: 8px !important;
 }
-#main .pt9 {
-  font-size: 9px;
+.pt9 {
+  font-size: 9px !important;
 }
-#main .pt10 {
-  font-size: 10px;
+.pt10 {
+  font-size: 10px !important;
 }
-#main .pt11 {
-  font-size: 11px;
+.pt11 {
+  font-size: 11px !important;
 }
-#main .pt12 {
-  font-size: 12px;
+.pt12 {
+  font-size: 12px !important;
 }
-#main .pt13 {
-  font-size: 13px;
+.pt13 {
+  font-size: 13px !important;
 }
-#main .pt14 {
-  font-size: 14px;
+.pt14 {
+  font-size: 14px !important;
 }
-#main .pt15 {
-  font-size: 15px;
+.pt15 {
+  font-size: 15px !important;
 }
-#main .pt16 {
-  font-size: 16px;
+.pt16 {
+  font-size: 16px !important;
 }
-#main .pt17 {
-  font-size: 17px;
+.pt17 {
+  font-size: 17px !important;
 }
-#main .pt18 {
-  font-size: 18px;
+.pt18 {
+  font-size: 18px !important;
 }
-#main .pt19 {
-  font-size: 19px;
+.pt19 {
+  font-size: 19px !important;
 }
-#main .pt20 {
-  font-size: 20px;
+.pt20 {
+  font-size: 20px !important;
 }
-#main .pt21 {
-  font-size: 21px;
+.pt21 {
+  font-size: 21px !important;
 }
-#main .pt22 {
-  font-size: 22px;
+.pt22 {
+  font-size: 22px !important;
 }
-#main .pt23 {
-  font-size: 23px;
+.pt23 {
+  font-size: 23px !important;
 }
-#main .pt24 {
-  font-size: 24px;
+.pt24 {
+  font-size: 24px !important;
 }
-#main .pt25 {
-  font-size: 25px;
+.pt25 {
+  font-size: 25px !important;
 }
-#main .pt26 {
-  font-size: 26px;
+.pt26 {
+  font-size: 26px !important;
 }
-#main .pt27 {
-  font-size: 27px;
+.pt27 {
+  font-size: 27px !important;
 }
-#main .pt28 {
-  font-size: 28px;
+.pt28 {
+  font-size: 28px !important;
 }
-#main .pt29 {
-  font-size: 29px;
+.pt29 {
+  font-size: 29px !important;
 }
-#main .pt30 {
-  font-size: 30px;
+.pt30 {
+  font-size: 30px !important;
 }
-#main .pt31 {
-  font-size: 31px;
+.pt31 {
+  font-size: 31px !important;
 }
-#main .pt32 {
-  font-size: 32px;
+.pt32 {
+  font-size: 32px !important;
 }
-#main .pt33 {
-  font-size: 33px;
+.pt33 {
+  font-size: 33px !important;
 }
-#main .pt34 {
-  font-size: 34px;
+.pt34 {
+  font-size: 34px !important;
 }
-#main .pt35 {
-  font-size: 35px;
+.pt35 {
+  font-size: 35px !important;
 }
-#main .pt36 {
-  font-size: 36px;
+.pt36 {
+  font-size: 36px !important;
 }
-#main .pt37 {
-  font-size: 37px;
+.pt37 {
+  font-size: 37px !important;
 }
-#main .pt38 {
-  font-size: 38px;
+.pt38 {
+  font-size: 38px !important;
 }
-#main .pt39 {
-  font-size: 39px;
+.pt39 {
+  font-size: 39px !important;
 }
-#main .pt40 {
-  font-size: 40px;
+.pt40 {
+  font-size: 40px !important;
 }
 /* #### SETTINGS FOR TEXTBOX #### */
 input.textBox {
