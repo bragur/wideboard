@@ -246,4 +246,24 @@ var AppChanges = {
         app.redraw();
         AppChanges.closeOpenDialog();
     },
+
+    moveTextBox: function(point) {
+        var $textBox = $('#textTool');
+        $textBox.css('left', point.x + $('#canvas').offset().left).css('top', point.y - 11 - $('#canvas').height() - $('#canvas').offset().top + 95);
+        $textBox.show();
+        setTimeout(function() {
+            $textBox.focus();
+        }, 20);
+    },
+
+    updateTextbox: function(font, size) {
+        $('#currentFontSize').text(size + "pt");
+
+        $('#currentFont>div').attr("class", "");
+        $('#currentFont>div').text(font).addClass("font-" + font.toLowerCase().trim().replace(" ", "-"));
+
+        $('#textTool').attr("class", "");
+        $('#textTool').addClass("font-" + font.toLowerCase().trim().replace(" ", "-")).addClass("pt" + size);
+        console.log("font-" + font.toLowerCase().trim().replace(" ", "-"));
+    },
 };
