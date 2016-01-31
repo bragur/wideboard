@@ -18,6 +18,147 @@ var utils = {
 
         return output;
     },
+
+    ajaxSaveParams: function(user, shapes, title, template) {
+        var stringifiedArray = JSON.stringify(shapes);
+        var parameters = {
+            "user": user,
+            "name": title,
+            "content": stringifiedArray,
+            "template": template
+        };
+
+        return parameters;
+    },
+
+    ajaxSaveCall: function(apiUrl, parameters, then) {
+        console.log(parameters);
+
+        $.ajax({
+            type: "POST",
+            contentType: "application/json; charset=utf-8",
+            url: apiUrl,
+            data: parameters,
+            dataType: "jsonp",
+            crossDomain: true,
+            success: function(data) {
+                console.log("Success: ", data);
+                then();
+            },
+            error: function(xhr, err) {
+                console.log("Error: ", xhr, err);
+            }
+        });
+    },
+
+    downloadList: function(user, apiUrl, getListHandler) {
+        var parameters = { "user": user, "template": false };
+
+        $.ajax({
+            type: "GET",
+            url: apiUrl,
+            data: parameters,
+            dataType: "jsonp",
+            crossDomain: true,
+            success: function(data) {
+                getListHandler(true, data);
+            },
+            error: function(xhr, err) {
+                getListHandler(false, xhr, err);
+            }
+        });
+    },
+
+    uploadShapes: function(shapes, user, apiUrl, title, template, then) {
+        var parameters = this.ajaxSaveParams(user, shapes, title, template);
+        this.ajaxSaveCall(apiUrl, parameters, then);
+    },
+
+    downloadShapes: function(apiUrl, id, getDrawingHandler) {
+        var parameters = {"id": id};
+
+        $.ajax({
+            type: "GET",
+            url: apiUrl,
+            data: parameters,
+            dataType: "jsonp",
+            crossDomain: true,
+            success: function(data) {
+                getDrawingHandler(data);
+            },
+            error: function(xhr, err) {
+                getDrawingHandler("error");
+            }
+        });
+    },
+
+    calculateCenter: function(boxSize) {
+        var windowWidthCenter = $(window).width()/2;
+        var windowHeightCenter = $(window).height()/2;
+        return new Point(windowWidthCenter - boxSize.center().x, windowHeightCenter - boxSize.center().y);
+    },
+
+    blurElement: function(element, from, to, duration, log) {
+        $({blurRadius: from}).animate({blurRadius: to}, {
+            duration: duration,
+            easing: 'swing', // or "linear"
+                             // use jQuery UI or Easing plugin for more options
+            step: function() {
+                if (log) {
+                    console.log(this.blurRadius);
+                }
+                $(element).css({
+                    "-webkit-filter": "blur("+this.blurRadius+"px)",
+                    "filter": "blur("+this.blurRadius+"px)"
+                });
+            }
+        });
+    },
+
+    fixOpenData: function(data) {
+        var items = new Array();
+        for (var i = 0; i < data.length; i++) {
+            var date = eval("new " + data[i].DateAdded.replace(/\//g, ""));
+            var text = data[i].WhiteboardTitle + " [" + date.toString('dd/MM/yyyy HH:mm:ss') + "]";
+            items.push({"id": data[i].ID, "text": text});
+        }
+
+        return items;
+    },
+
+    convertJsonShapes: function(data) {
+        var arr = $.parseJSON(data);
+        var newShapes = new Array();
+
+        for (var i = 0; i < arr.length; i++) {
+            var position = new Point(arr[i].position.x, arr[i].position.y);
+            console.log(arr[i].name);
+            switch(arr[i].name) {
+                case 'Rectangle':
+                    var shape = new Rectangle(position, arr[i].color, arr[i].fillColor, arr[i].lineWidth);
+                    break;
+                case 'Ellipse':
+                    var shape = new Ellipse(position, arr[i].color, arr[i].fillColor, arr[i].lineWidth);
+                    break;
+                case 'Circle':
+                    var shape = new Ellipse(position, arr[i].color, arr[i].fillColor, arr[i].lineWidth);
+                    break;
+                case 'Line':
+                    var shape = new Line(position, arr[i].color, arr[i].fillColor, arr[i].lineWidth);
+                    break;
+                case 'Pen':
+                    var shape = new Pen(position, arr[i].color, arr[i].fillColor, arr[i].lineWidth);
+                    break;
+                default:
+                    var shape = null;
+                    break;
+            }
+            shape.size = new Point(arr[i].size.x, arr[i].size.y);
+            newShapes.push(shape);
+        }
+
+        return newShapes;
+    }
 }
 
 // With some help from http://stackoverflow.com/a/32337430

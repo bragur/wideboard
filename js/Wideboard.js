@@ -170,6 +170,19 @@ function Wideboard(canvasSelector) {
         AppChanges.checkVisibles(tool);
     };
 
+    self.saveToApi = function(title, template) {
+        utils.uploadShapes(self.shapes, self.apiUser, self.apiSaveUrl, title, template, AppChanges.closeSaveDialogAfterSave);
+    };
+
+    self.getListFromApi = function() {
+        utils.downloadList(self.apiUser, self.apiGetListUrl, AppChanges.showOpenDialog);
+    };
+
+    self.getDrawingFromApi = function(id) {
+        // Do stuff
+        utils.downloadShapes(self.apiGetDrawingUrl, id, AppChanges.loadNewDrawing);
+    };
+
     self.init = function() {
         // Init App
         self.canvas = $(canvasSelector);
@@ -182,7 +195,6 @@ function Wideboard(canvasSelector) {
         self.canvasContext = canvas.getContext("2d");
         self.shapes = new Array();
         self.history = new Array();
-
         self.color = '#000000';
         self.fillColor = 'rgba(0,0,0,0.0)';
         self.fillOpacity = 0.0;
@@ -195,6 +207,12 @@ function Wideboard(canvasSelector) {
         self.toggleVisibles('Pen');
         AppCustomization.init();
         AppListener.init();
+        AppChanges.init();
+
+        self.apiUser = 'bragi14';
+        self.apiSaveUrl = 'http://whiteboard.apphb.com/Home/Save';
+        self.apiGetListUrl = 'http://whiteboard.apphb.com/Home/GetList';
+        self.apiGetDrawingUrl = 'http://whiteboard.apphb.com/Home/GetWhiteboard';
     };
 
     self.init();

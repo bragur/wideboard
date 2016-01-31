@@ -11,6 +11,12 @@ var AppListener = {
         this.lineWidthListener();
         this.textWidthListener();
         this.opacityListener();
+        this.saveDialogListener();
+        this.save();
+        this.cancelSave();
+        this.openDialogListener();
+        this.cancelOpen();
+        this.open();
     },
 
     toolChangeListener: function() {
@@ -115,7 +121,6 @@ var AppListener = {
             var mode = $(this).is(':checked');
             var color = $('#fillPicker').val();
             var opacity = $('#opacity').val();
-            // var opacity = $('.opacity-amount').data('opacity');
             console.log("Color:", color, "Opacity:", opacity);
             app.toggleFill(mode, color, opacity);
         });
@@ -124,5 +129,50 @@ var AppListener = {
     textWidthListener: function() {
         'use strict';
         $('input.textBox').autoSize();
+    },
+
+    saveDialogListener: function() {
+        'use strict';
+        $('#optionSave').on('click', function() {
+            AppChanges.openSaveDialog();
+        });
+    },
+
+    save: function() {
+        'use strict';
+        $('#save').on('click', function() {
+            var title = $('#save-filename').val();
+            var template = $('#save-template').is(':checked');
+            app.saveToApi(title, template);
+        });
+    },
+
+    cancelSave: function() {
+        'use strict';
+        $('#cancelSave').on('click', function() {
+            AppChanges.closeSaveDialog();
+        });
+    },
+
+    openDialogListener: function() {
+        'use strict';
+        $('#optionOpen').on('click', function() {
+            app.getListFromApi();
+        });
+    },
+
+    cancelOpen: function() {
+        'use strict';
+        $('#cancelOpen').on('click', function() {
+            AppChanges.closeOpenDialog();
+        });
+    },
+
+    open: function() {
+        'use strict';
+        $('#open').on('click', function() {
+            var id = $('#open-file-list').val();
+            app.getDrawingFromApi(id);
+        });
     },
 };

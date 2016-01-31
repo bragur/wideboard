@@ -1,4 +1,8 @@
 var AppChanges = {
+    init: function() {
+        this.enableControlsAfterDialogDismiss();
+    },
+
     disableUndo: function() {
         $('#optionUndo').attr('disabled', 'disabled');
     },
@@ -111,6 +115,14 @@ var AppChanges = {
                 function() {
                     $(this).css('cursor', 'default'); // out
                 });
+        } else if (tool === 'Move') {
+            $('#canvas').hover(
+                function() {
+                    $(this).css('cursor', 'move');
+                },
+                function() {
+                    $(this).css('cursor', 'default');
+                });
         } else {
             $('#canvas').hover(
                 function() {
@@ -146,7 +158,92 @@ var AppChanges = {
         $('#currentTool').text(' ' + tool);
     },
 
+    enableControlsAfterDialogDismiss: function() {
+        var windowHeight = $(window).height();
+        $('#fake-screen').css('top', -windowHeight);
+    },
+
+    disableAllButDialog: function() {
+        $('#fake-screen').css('top', 0);
+    },
+
     getText: function(position) {
         $('input.textBox').prop('top', position.x).prop('left', position.y);
+    },
+
+    openSaveDialog: function() {
+        console.log("Gonna open this save dialog thing");
+        var $dialog = $('#save-dialog');
+        var sizeOfDialog = new Box($dialog.width(), $dialog.height());
+        var newPlacement = utils.calculateCenter(sizeOfDialog);
+        var newLeft = newPlacement.x + "px";
+        var newTop = newPlacement.y + "px";
+        utils.blurElement('#main', 0, 4, 200);
+        this.disableAllButDialog();
+        $dialog.animate({left: newLeft}, 200);
+    },
+
+    closeSaveDialog: function() {
+        console.log("Gonna close this save dialog thing");
+        var $dialog = $('#save-dialog');
+        var dialogWidth = $dialog.width();
+        var shadowWidth = parseInt($dialog.css('box-shadow').split(' ')[5].replace("px", ""));
+        var newLeft = (-dialogWidth-shadowWidth*2) + "px";
+        $dialog.animate({left: newLeft}, 100);
+        AppChanges.enableControlsAfterDialogDismiss();
+        utils.blurElement('#main', 4, 0, 100);
+        this.resetDialog = function(timeout) {
+            setTimeout(function() {
+                if ($('#save-template').is(':checked')) {
+                    $('#save-template').trigger('click');
+                }
+                $('#save-filename').val('');
+            }, timeout
+        )};
+        AppChanges.resetDialog(200);
+    },
+
+    closeSaveDialogAfterSave: function() {
+        $('#save-success').fadeIn();
+        var fadeout = function() {
+            $('#save-template').fadeOut();
+            AppChanges.closeSaveDialog()
+            $('#save-template').show();
+        };
+        setTimeout(fadeout(), 700);
+    },
+
+    showOpenDialog: function(success, data, error) {
+        console.log("Gonna show some items here");
+        var $dialog = $('#open-dialog');
+        var sizeOfDialog = new Box($dialog.width(), $dialog.height());
+        var newPlacement = utils.calculateCenter(sizeOfDialog);
+        var newRight = newPlacement.x + "px";
+        AppChanges.disableAllButDialog();
+        utils.blurElement('#main', 0, 4, 200);
+        $('#open-file-list').select2({data: utils.fixOpenData(data)});
+        $dialog.animate({right: newRight}, 200);
+    },
+
+    closeOpenDialog: function() {
+        console.log("Gonna close this open dialog thingy here");
+        var $dialog = $('#open-dialog');
+        var dialogWidth = $dialog.width();
+        var shadowWidth = parseInt($dialog.css('box-shadow').split(' ')[5].replace("px", ""));
+        var newRight  = (-dialogWidth-shadowWidth*2) + "px";
+        $dialog.animate({right: newRight}, 100);
+        this.enableControlsAfterDialogDismiss();
+        utils.blurElement('#main', 4, 0, 100);
+    },
+
+    loadNewDrawing: function(data) {
+        console.log(app.shapes);
+        var newShapes = utils.convertJsonShapes(data.WhiteboardContents);
+        console.log(newShapes);
+        app.shapes = newShapes;
+        console.log(app.shapes);
+        app.resetHistoryButtons();
+        app.redraw();
+        AppChanges.closeOpenDialog();
     },
 };
