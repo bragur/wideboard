@@ -152,9 +152,17 @@ var utils = {
                     break;
                 case 'Pen':
                     var shape = new Pen(position, arr[i].color, arr[i].fillColor, arr[i].lineWidth);
+                    shape.path = arr[i].path;
+                    console.log(shape);
                     break;
                 case 'Text':
-                    var shape = new Text(position, arr[i].color, arr[i].fillColor, arr[i].lineWidth, arr[i].font, arr[i].string);
+                    console.log(arr[i]);
+                    console.log(arr[i].string);
+                    var shape = new Text(position, arr[i].color, '#000000', arr[i].lineWidth, arr[i].font, arr[i].string);
+                    shape.size = arr[i].size;
+                    shape.offset = true;
+                    shape.sizeOffset = arr[i].sizeOffset;
+                    break;
                 default:
                     var shape = null;
                     break;

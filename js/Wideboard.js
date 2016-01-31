@@ -192,6 +192,7 @@ function Wideboard(canvasSelector) {
         app.shapes.push(shape);
         shape.added(self.canvasContext);
         self.redraw();
+        setTimeout(function() { self.redraw(); }, 4); // don't ask
     };
 
     self.init = function() {
