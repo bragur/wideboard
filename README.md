@@ -4,7 +4,7 @@ This is a simple drawing board made in JavaScript using the canvas HTML5 element
 
 ## TODO
 
-* Fixing of code from new template..?
+* ~~Fixing of code from new template..?~~ [won't be needed for now]
 * Text tool
 	* Some functionality already implemented.
 * ~~Selector tool~~
