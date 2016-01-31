@@ -201,11 +201,20 @@ var AppListener = {
 
     textToolListener: function() {
         var position;
+        $('#textTool').on('keyup', function(e) {
+            if (e.keyCode === 13) {
+                $('#textTool').focusout();
+            }
+            if (e.keyCode === 27) {
+                $('#textTool').val('');
+                $('#textTool').focusout();
+            }
+        });
         $('#textTool').on('focusin', function() {
             position = new Point($(this).position().left - $('#canvas').offset().left, $(this).position().top + 11 - $('#ladyluck').height());
         });
         $('#textTool').on('focusout', function() {
-            if ($(this).val().trim() != '') {
+            if ($(this).val().trim() !== '') {
                 app.insertText($(this).val().trim(), position);
             }
             $(this).val("");
