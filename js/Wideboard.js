@@ -13,15 +13,18 @@ function Wideboard(canvasSelector) {
 
         var startingPosition = self.getEventPoint(e);
         var shape = null;
-        if (!self.selectionTool) {
-            shape = new self.shapeConstructor(startingPosition, self.color, self.fillColor, self.lineWidth, self.font);
-        } else {
+        if (self.textTool) {
+            console.log("Show text box");
+            AppChanges.moveTextBox(startingPosition);
+        } else if (self.selectionTool){
             for (var i = self.shapes.length - 1; i >= 0 && shape === null; i--) {
                 var rect = new Rect(self.shapes[i].position, self.shapes[i].size);
                 if (rect.isInRect(startingPosition)) {
                     shape = new self.shapeConstructor(self.shapes[i]);
                 }
             }
+        } else {
+            shape = new self.shapeConstructor(startingPosition, self.color, self.fillColor, self.lineWidth, self.font);
         }
 
         if (shape !== null) {
@@ -183,6 +186,14 @@ function Wideboard(canvasSelector) {
         utils.downloadShapes(self.apiGetDrawingUrl, id, AppChanges.loadNewDrawing);
     };
 
+    self.insertText = function(str, startingPosition) {
+        console.log(self.font);
+        var shape = new Text(startingPosition, self.color, self.fillColor, self.lineWidth, self.font, str);
+        app.shapes.push(shape);
+        shape.added(self.canvasContext);
+        self.redraw();
+    };
+
     self.init = function() {
         // Init App
         self.canvas = $(canvasSelector);
@@ -192,6 +203,7 @@ function Wideboard(canvasSelector) {
         });
         self.shapeConstructor = null;
         self.selectionTool = false;
+        self.textTool = false;
         self.canvasContext = canvas.getContext("2d");
         self.shapes = new Array();
         self.history = new Array();

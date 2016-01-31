@@ -136,26 +136,26 @@ h1 {
 	}
 	#font {
 		display: inline-block;
-		.font-bigger {
-			font-size: 20px;
-		}
-		.font-arial {
-			font-family: @arial;
-		}
-		.font-courier-new {
-			font-family: @courier;
-		}
-		.font-verdana {
-			font-family: @verdana;
-		}
-		.font-comic-sans {
-			font-family: @comicsans;
-		}
 	}
-
+	.font-bigger {
+		font-size: 20px;
+	}
 }
 
 /* #### NEED FONT SIZES #### */
+
+.font-arial {
+	font-family: @arial;
+}
+.font-courier-new {
+	font-family: @courier;
+}
+.font-verdana {
+	font-family: @verdana;
+}
+.font-comic-sans {
+	font-family: @comicsans;
+}
 
 .generate-font-sizes(40);
 
@@ -217,6 +217,11 @@ h1 {
 	height: 100%;
 	background-color: rgba(255,255,255,0.0);
 	z-index: 998;
+}
+
+#textTool {
+	font-size: 10px;
+	position: relative;
 }
 
 .btn-spaced {

@@ -17,6 +17,8 @@ var AppListener = {
         this.openDialogListener();
         this.cancelOpen();
         this.open();
+        this.fontListener();
+        this.textToolListener();
         this.fileNameListener();
     },
 
@@ -28,6 +30,7 @@ var AppListener = {
             AppChanges.changeTool(newTool);
             AppChanges.checkVisibles(newTool);
             app.selectionTool = false;
+            app.textTool = false;
 
             switch (newTool) {
                 case 'Rectangle':
@@ -41,6 +44,7 @@ var AppListener = {
                     break;
                 case 'Text':
                     app.shapeConstructor = Text;
+                    app.textTool = true;
                     break;
                 case 'Pen':
                     app.shapeConstructor = Pen;
@@ -176,6 +180,36 @@ var AppListener = {
         $('#open').on('click', function() {
             var id = $('#open-file-list').val();
             app.getDrawingFromApi(id);
+        });
+    },
+
+    fontListener: function() {
+        'use strict';
+        $('.fontOption').on('click', function() {
+            var fontSize = $('#currentFontSize').text().replace("t", "x");
+            console.log("Changing font to " + $(this).data('font') + " " + fontSize);
+            app.font = "normal " + fontSize + " " + $(this).data('font');
+            AppChanges.updateTextbox($(this).data('font'), fontSize.replace("px", ""));
+        });
+        $('.fontSize').on('click', function() {
+            var font = $('#currentFont').text().trim();
+            console.log("Changing font to " + font + " " + $(this).data('fontsize') + "px");
+            app.font = "normal " + $(this).data('fontsize') + "px " + font;
+            AppChanges.updateTextbox(font, $(this).data('fontsize'));
+        });
+    },
+
+    textToolListener: function() {
+        var position;
+        $('#textTool').on('focusin', function() {
+            position = new Point($(this).position().left - $('#canvas').offset().left, $(this).position().top + 11 - $('#ladyluck').height());
+        });
+        $('#textTool').on('focusout', function() {
+            if ($(this).val().trim() != '') {
+                app.insertText($(this).val().trim(), position);
+            }
+            $(this).val("");
+            $(this).hide();
         });
     },
 

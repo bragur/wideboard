@@ -120,19 +120,19 @@ h1.site-title {
 #main #font {
   display: inline-block;
 }
-#main #font .font-bigger {
+#main .font-bigger {
   font-size: 20px;
 }
-#main #font .font-arial {
+.font-arial {
   font-family: "Arial";
 }
-#main #font .font-courier-new {
+.font-courier-new {
   font-family: "Courier new";
 }
-#main #font .font-verdana {
+.font-verdana {
   font-family: "Verdana";
 }
-#main #font .font-comic-sans {
+.font-comic-sans {
   font-family: "Comic sans MS";
 }
 /* #### NEED FONT SIZES #### */
@@ -300,6 +300,10 @@ input.textBox {
   height: 100%;
   background-color: rgba(255, 255, 255, 0);
   z-index: 998;
+}
+#textTool {
+  font-size: 10px;
+  position: relative;
 }
 .btn-spaced {
   display: flex;
