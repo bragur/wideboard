@@ -141,7 +141,7 @@ h1 {
 
 .generate-font-sizes(@n, @i: 1) when (@i =< @n) {
   #main .pt@{i} {
-    font-size: (@i * 1pt);
+    font-size: (@i * 1px);
   }
   .generate-font-sizes(@n, (@i + 1));
 }

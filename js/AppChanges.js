@@ -155,7 +155,9 @@ var AppChanges = {
             default:
                 break;
         };
-        $('#currentTool').text(' ' + tool);
+        var newHTML = $('#currentTool').text('').prop('outerHTML');
+        newHTML += " " + tool;
+        $('#currentTool').parent().html(newHTML);
     },
 
     enableControlsAfterDialogDismiss: function() {
@@ -177,6 +179,7 @@ var AppChanges = {
         AppCustomization.disableSaveAndOpen();
         var $dialog = $('#save-dialog');
         $('#save-filename').removeAttr('disabled');
+        $('#save-filename').focus();
         var sizeOfDialog = new Box($dialog.width(), $dialog.height());
         var newPlacement = utils.calculateCenter(sizeOfDialog);
         var newLeft = newPlacement.x + "px";

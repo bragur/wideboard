@@ -181,7 +181,14 @@ var AppListener = {
 
     fileNameListener: function() {
         $('#save').attr('disabled', 'disabled');
-        $('#save-filename').on('keydown keyup change', function() {
+        $('#save-filename').on('keydown keyup change', function(e) {
+            if (e.keyCode === 27 && e.type === 'keydown') {
+                console.log("Vil cancellera!");
+                AppChanges.closeSaveDialog();
+            }
+            if (e.keyCode === 13 && e.type === 'keydown') {
+                utils.save();
+            }
             if ($(this).val().trim() == '') {
                 $('#save').attr('disabled', 'disabled');
             } else {
