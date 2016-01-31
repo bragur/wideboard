@@ -2,6 +2,7 @@ var AppCustomization = {
     init: function() {
         this.resizeCanvas();
         this.setHotKeys();
+        this.enableSaveAndOpen();
     },
 
     resizeCanvas: function() {
@@ -18,16 +19,6 @@ var AppCustomization = {
             app.redo();
             return false;
         });
-        Mousetrap.bind('mod+s', function() {
-            console.log('save');
-            return false;
-            // app.save();
-        });
-        Mousetrap.bind('mod+o', function() {
-            console.log('open');
-            return false;
-            // app.open();
-        });
         Mousetrap.bind('c', function() {
             console.log('Open color picker');
             $('#colorPicker').trigger("click");
@@ -40,6 +31,46 @@ var AppCustomization = {
                 }
                 $('#fillPicker').trigger("click");
             }
+        });
+    },
+
+    enableCancel: function(dialog) {
+        Mousetrap.bind('esc', function() {
+            switch (dialog) {
+                case 'open':
+                    $('#cancelOpen').trigger("click");
+                    break;
+                case 'save':
+                    $('#cancelSave').trigger("click");
+                default:
+                    break;
+            }
+        });
+    },
+
+    disableCancel: function(dialog) {
+        Mousetrap.unbind('esc');
+    },
+
+    disableSaveAndOpen: function() {
+        Mousetrap.bind('mod+s', function() {
+            console.log("Not saving shit");
+            return false;
+        });
+        Mousetrap.bind('mod+o', function() {
+            console.log("Not opening shit");
+            return false;
+        });
+    },
+
+    enableSaveAndOpen: function() {
+        Mousetrap.bind('mod+s', function() {
+            AppChanges.openSaveDialog();
+            return false;
+        });
+        Mousetrap.bind('mod+o', function() {
+            app.getListFromApi();        
+            return false;
         });
     },
 };

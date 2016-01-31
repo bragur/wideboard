@@ -1,3 +1,19 @@
+@font-face {
+  font-family: 'Verdana';
+  src: url('../fonts/Verdana.ttf');
+}
+@font-face {
+  font-family: 'Courier New';
+  src: url('../fonts/Courier New.ttf');
+}
+@font-face {
+  font-family: 'Comic sans';
+  src: url('../fonts/Comic Sans MS.ttf');
+}
+@font-face {
+  font-family: 'Arial';
+  src: url('../fonts/Arial.ttf');
+}
 /* #### TITLE OF SITE #### */
 h1.site-title {
   font-size: 60px;
@@ -12,6 +28,14 @@ h1.site-title {
 }
 #main .options {
   padding: 12px 0px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+#main #messages {
+  font-size: 1.5em;
+  background-color: #f0f0f0;
+  padding: 2px 10px;
 }
 #main .options-lower {
   padding-right: 18px;
@@ -280,5 +304,10 @@ input.textBox {
 #textTool {
   font-size: 10px;
   position: relative;
+}
+.btn-spaced {
+  display: flex;
+  justify-content: space-around;
+  width: 50%;
 }
 /*# sourceMappingURL=style.min.css.map */

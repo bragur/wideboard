@@ -43,10 +43,11 @@ var utils = {
             crossDomain: true,
             success: function(data) {
                 console.log("Success: ", data);
-                then();
+                then('Save successful!');
             },
             error: function(xhr, err) {
                 console.log("Error: ", xhr, err);
+                then('Unable to save, please try again', -1);
             }
         });
     },
@@ -119,7 +120,9 @@ var utils = {
         var items = new Array();
         for (var i = 0; i < data.length; i++) {
             var date = eval("new " + data[i].DateAdded.replace(/\//g, ""));
-            var text = data[i].WhiteboardTitle + " [" + date.toString('dd/MM/yyyy HH:mm:ss') + "]";
+            console.log(date.toString());
+            var mom = new moment(date.toString());
+            var text = data[i].WhiteboardTitle + " [ " + mom.calendar() + " ]";
             items.push({"id": data[i].ID, "text": text});
         }
 
@@ -127,6 +130,7 @@ var utils = {
     },
 
     convertJsonShapes: function(data) {
+        console.log(data);
         var arr = $.parseJSON(data);
         var newShapes = new Array();
 
@@ -149,6 +153,8 @@ var utils = {
                 case 'Pen':
                     var shape = new Pen(position, arr[i].color, arr[i].fillColor, arr[i].lineWidth);
                     break;
+                case 'Text':
+                    var shape = new Text(position, arr[i].color, arr[i].fillColor, arr[i].lineWidth, arr[i].font, arr[i].string);
                 default:
                     var shape = null;
                     break;
@@ -158,6 +164,12 @@ var utils = {
         }
 
         return newShapes;
+    },
+
+    save: function() {
+        var title = $('#save-filename').val();
+        var template = $('#save-template').is(':checked');
+        app.saveToApi(title, template);
     }
 }
 

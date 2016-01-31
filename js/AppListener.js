@@ -19,6 +19,7 @@ var AppListener = {
         this.open();
         this.fontListener();
         this.textToolListener();
+        this.fileNameListener();
     },
 
     toolChangeListener: function() {
@@ -138,16 +139,18 @@ var AppListener = {
     saveDialogListener: function() {
         'use strict';
         $('#optionSave').on('click', function() {
-            AppChanges.openSaveDialog();
+            if (app.shapes.length > 0) {
+                AppChanges.openSaveDialog();
+            } else {
+                AppChanges.message('Nothing to save', -1);
+            }
         });
     },
 
     save: function() {
         'use strict';
         $('#save').on('click', function() {
-            var title = $('#save-filename').val();
-            var template = $('#save-template').is(':checked');
-            app.saveToApi(title, template);
+            utils.save();
         });
     },
 
@@ -207,6 +210,24 @@ var AppListener = {
             }
             $(this).val("");
             $(this).hide();
+        });
+    },
+
+    fileNameListener: function() {
+        $('#save').attr('disabled', 'disabled');
+        $('#save-filename').on('keydown keyup change', function(e) {
+            if (e.keyCode === 27 && e.type === 'keydown') {
+                console.log("Vil cancellera!");
+                AppChanges.closeSaveDialog();
+            }
+            if (e.keyCode === 13 && e.type === 'keydown') {
+                utils.save();
+            }
+            if ($(this).val().trim() == '') {
+                $('#save').attr('disabled', 'disabled');
+            } else {
+                $('#save').removeAttr('disabled');
+            }
         });
     },
 };

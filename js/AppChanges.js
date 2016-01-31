@@ -155,7 +155,9 @@ var AppChanges = {
             default:
                 break;
         };
-        $('#currentTool').text(' ' + tool);
+        var newHTML = $('#currentTool').text('').prop('outerHTML');
+        newHTML += " " + tool;
+        $('#currentTool').parent().html(newHTML);
     },
 
     enableControlsAfterDialogDismiss: function() {
@@ -173,7 +175,11 @@ var AppChanges = {
 
     openSaveDialog: function() {
         console.log("Gonna open this save dialog thing");
+        AppCustomization.enableCancel('save');
+        AppCustomization.disableSaveAndOpen();
         var $dialog = $('#save-dialog');
+        $('#save-filename').removeAttr('disabled');
+        $('#save-filename').focus();
         var sizeOfDialog = new Box($dialog.width(), $dialog.height());
         var newPlacement = utils.calculateCenter(sizeOfDialog);
         var newLeft = newPlacement.x + "px";
@@ -185,6 +191,8 @@ var AppChanges = {
 
     closeSaveDialog: function() {
         console.log("Gonna close this save dialog thing");
+        AppCustomization.disableCancel();
+        AppCustomization.enableSaveAndOpen();
         var $dialog = $('#save-dialog');
         var dialogWidth = $dialog.width();
         var shadowWidth = parseInt($dialog.css('box-shadow').split(' ')[5].replace("px", ""));
@@ -198,23 +206,22 @@ var AppChanges = {
                     $('#save-template').trigger('click');
                 }
                 $('#save-filename').val('');
+                $('#save-filename').attr('disabled', 'disabled');
+                $('#save').attr('disabled', 'disabled');
             }, timeout
         )};
         AppChanges.resetDialog(200);
     },
 
-    closeSaveDialogAfterSave: function() {
-        $('#save-success').fadeIn();
-        var fadeout = function() {
-            $('#save-template').fadeOut();
-            AppChanges.closeSaveDialog()
-            $('#save-template').show();
-        };
-        setTimeout(fadeout(), 700);
+    closeSaveDialogAfterSave: function(str) {
+        AppChanges.closeSaveDialog();
+        AppChanges.message(str);
     },
 
     showOpenDialog: function(success, data, error) {
         console.log("Gonna show some items here");
+        AppCustomization.enableCancel('open');
+        AppCustomization.disableSaveAndOpen();
         var $dialog = $('#open-dialog');
         var sizeOfDialog = new Box($dialog.width(), $dialog.height());
         var newPlacement = utils.calculateCenter(sizeOfDialog);
@@ -227,6 +234,8 @@ var AppChanges = {
 
     closeOpenDialog: function() {
         console.log("Gonna close this open dialog thingy here");
+        AppCustomization.disableCancel();
+        AppCustomization.enableSaveAndOpen();
         var $dialog = $('#open-dialog');
         var dialogWidth = $dialog.width();
         var shadowWidth = parseInt($dialog.css('box-shadow').split(' ')[5].replace("px", ""));
@@ -237,14 +246,36 @@ var AppChanges = {
     },
 
     loadNewDrawing: function(data) {
-        console.log(app.shapes);
-        var newShapes = utils.convertJsonShapes(data.WhiteboardContents);
-        console.log(newShapes);
-        app.shapes = newShapes;
-        console.log(app.shapes);
-        app.resetHistoryButtons();
-        app.redraw();
-        AppChanges.closeOpenDialog();
+        if (data === "error") {
+            AppChanges.message('Unable to open file, please try again', -1);
+        } else {
+            var newShapes = utils.convertJsonShapes(data.WhiteboardContents);
+            app.shapes = newShapes;
+            app.resetHistoryButtons();
+            app.redraw();
+            AppChanges.closeOpenDialog();
+            AppChanges.message('Opened file successfully');
+        }
+        
+    },
+
+    message: function(str, type) {
+        console.log(str);
+        var $dialog = $('#messages');
+        $dialog.text(str);
+
+        switch (type) {
+            case -1:
+                $dialog.css('background-color', '#E8C4CD');
+                break;
+            default:
+                $dialog.css('background-color', 'rgb(240,240,240)');
+                break;
+        }
+
+        $dialog.show();
+        setTimeout(function() {$dialog.fadeOut(); }, 2500);
+        setTimeout(function() {$dialog.text(''); }, 3500);
     },
 
     moveTextBox: function(point) {
