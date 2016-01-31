@@ -17,6 +17,7 @@ var AppListener = {
         this.openDialogListener();
         this.cancelOpen();
         this.open();
+        this.fileNameListener();
     },
 
     toolChangeListener: function() {
@@ -134,7 +135,11 @@ var AppListener = {
     saveDialogListener: function() {
         'use strict';
         $('#optionSave').on('click', function() {
-            AppChanges.openSaveDialog();
+            if (app.shapes.length > 0) {
+                AppChanges.openSaveDialog();
+            } else {
+                AppChanges.message('Nothing to save', -1);
+            }
         });
     },
 
@@ -173,6 +178,17 @@ var AppListener = {
         $('#open').on('click', function() {
             var id = $('#open-file-list').val();
             app.getDrawingFromApi(id);
+        });
+    },
+
+    fileNameListener: function() {
+        $('#save').attr('disabled', 'disabled');
+        $('#save-filename').on('keydown keyup change', function() {
+            if ($(this).val().trim() == '') {
+                $('#save').attr('disabled', 'disabled');
+            } else {
+                $('#save').removeAttr('disabled');
+            }
         });
     },
 };

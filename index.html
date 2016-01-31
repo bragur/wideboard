@@ -20,132 +20,134 @@
                 <div class="row">
                     <h1 class="site-title">Wideboard.js</h1>
                     <div class="options">
-                        <input type="color" name="colorPicker" id="colorPicker" class="picker" />
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-default btn-lg" style="padding: 4px 12px;"><i id="currentTool" class="fa fa-pencil"> Pen</i></button>
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="caret"></span>
-                                <span class="sr-only">Toggle Dropdown</span>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li class="toolOption" data-tool="Pen"><a href="#"><i class="fa fa-pencil fa-2x"></i><div class="tool">Pen</div></a></li>
-                                <li class="toolOption" data-tool="Rectangle"><a href="#"><i class="fa fa-square-o fa-2x"></i><div class="tool">Rectangle</div></a></li>
-                                <li class="toolOption" data-tool="Ellipse"><a href="#"><i class="fa fa-circle-thin fa-2x"></i><div class="tool">Ellipse</div></a></li>
-                                <li class="toolOption" data-tool="Line"><a href="#"><i class="fa fa-minus fa-2x"></i><div class="tool">Line</div></a></li>
-                                <li class="toolOption" data-tool="Text"><a href="#"><i class="fa fa-i-cursor fa-2x"></i><div class="tool">Text</div></a></li>
-                                <li class="toolOption" data-tool="Move"><a href="#"><i class="fa fa-hand-grab-o fa-2x"></i><div class="tool">Move</div></a></li>
-                            </ul>
-                        </div>
-                        <div id="font" style="display: none;">
+                        <div class="tools">
+                            <input type="color" name="colorPicker" id="colorPicker" class="picker" />
                             <div class="btn-group">
-                                <button id="currentFont" type="button" class="btn btn-default btn-lg" style="padding: 4px 12px;">
-                                    <div class="font-arial">Arial</div>
-                                </button>
+                                <button type="button" class="btn btn-default btn-lg" style="padding: 4px 12px;"><i id="currentTool" class="fa fa-pencil"> Pen</i></button>
                                 <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <span class="caret"></span>
                                     <span class="sr-only">Toggle Dropdown</span>
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li class="fontOption" data-font="Arial">
-                                        <a href="#">
-                                            <div class="font-bigger font-arial">Arial</div>
-                                        </a>
-                                    </li>
-                                    <li class="fontOption" data-font="Courier New">
-                                        <a href="#">
-                                            <div class="font-bigger font-courier-new">Courier New</div>
-                                        </a>
-                                    </li>
-                                    <li class="fontOption" data-font="Verdana">
-                                        <a href="#">
-                                            <div class="font-bigger font-verdana">Verdana</div>
-                                        </a>
-                                    </li>
-                                    <li class="fontOption" data-font="Comic sans">
-                                        <a href="#">
-                                            <div class="font-bigger font-comic-sans">Comic sans</div>
-                                        </a>
-                                    </li>
+                                    <li class="toolOption" data-tool="Pen"><a href="#"><i class="fa fa-pencil fa-2x"></i><div class="tool">Pen</div></a></li>
+                                    <li class="toolOption" data-tool="Rectangle"><a href="#"><i class="fa fa-square-o fa-2x"></i><div class="tool">Rectangle</div></a></li>
+                                    <li class="toolOption" data-tool="Ellipse"><a href="#"><i class="fa fa-circle-thin fa-2x"></i><div class="tool">Ellipse</div></a></li>
+                                    <li class="toolOption" data-tool="Line"><a href="#"><i class="fa fa-minus fa-2x"></i><div class="tool">Line</div></a></li>
+                                    <li class="toolOption" data-tool="Text"><a href="#"><i class="fa fa-i-cursor fa-2x"></i><div class="tool">Text</div></a></li>
+                                    <li class="toolOption" data-tool="Move"><a href="#"><i class="fa fa-hand-grab-o fa-2x"></i><div class="tool">Move</div></a></li>
                                 </ul>
                             </div>
-                            <div class="btn-group">
-                                <button id="currentFontSize" type="button" class="btn btn-default btn-lg" style="padding: 4px 12px;">12pt</button>
+                            <div id="font" style="display: none;">
+                                <div class="btn-group">
+                                    <button id="currentFont" type="button" class="btn btn-default btn-lg" style="padding: 4px 12px;">
+                                        <div class="font-arial">Arial</div>
+                                    </button>
+                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <span class="caret"></span>
+                                        <span class="sr-only">Toggle Dropdown</span>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li class="fontOption" data-font="Arial">
+                                            <a href="#">
+                                                <div class="font-bigger font-arial">Arial</div>
+                                            </a>
+                                        </li>
+                                        <li class="fontOption" data-font="Courier New">
+                                            <a href="#">
+                                                <div class="font-bigger font-courier-new">Courier New</div>
+                                            </a>
+                                        </li>
+                                        <li class="fontOption" data-font="Verdana">
+                                            <a href="#">
+                                                <div class="font-bigger font-verdana">Verdana</div>
+                                            </a>
+                                        </li>
+                                        <li class="fontOption" data-font="Comic sans">
+                                            <a href="#">
+                                                <div class="font-bigger font-comic-sans">Comic sans</div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="btn-group">
+                                    <button id="currentFontSize" type="button" class="btn btn-default btn-lg" style="padding: 4px 12px;">12pt</button>
+                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <span class="caret"></span>
+                                        <span class="sr-only">Toggle Dropdown</span>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li class="fontSize" data-fontsize="7">
+                                            <a href="#">
+                                                <div class="pt7">7pt</div>
+                                            </a>
+                                        </li>
+                                        <li class="fontSize" data-fontsize="8">
+                                            <a href="#">
+                                                <div class="pt8">8pt</div>
+                                            </a>
+                                        </li>
+                                        <li class="fontSize" data-fontsize="9">
+                                            <a href="#">
+                                                <div class="pt9">9pt</div>
+                                            </a>
+                                        </li>
+                                        <li class="fontSize" data-fontsize="10">
+                                            <a href="#">
+                                                <div class="pt10">10pt</div>
+                                            </a>
+                                        </li>
+                                        <li class="fontSize" data-fontsize="12">
+                                            <a href="#">
+                                                <div class="pt12">12pt</div>
+                                            </a>
+                                        </li>
+                                        <li class="fontSize" data-fontsize="14">
+                                            <a href="#">
+                                                <div class="pt14">14pt</div>
+                                            </a>
+                                        </li>
+                                        <li class="fontSize" data-fontsize="18">
+                                            <a href="#">
+                                                <div class="pt18">18pt</div>
+                                            </a>
+                                        </li>
+                                        <li class="fontSize" data-fontsize="24">
+                                            <a href="#">
+                                                <div class="pt24">24pt</div>
+                                            </a>
+                                        </li>
+                                        <li class="fontSize" data-fontsize="36">
+                                            <a href="#">
+                                                <div class="pt36">36pt</div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="btn-group" id="lineWidth">
+                                <button id="currentLineWidthLabel" type="button" class="btn btn-default btn-lg" style="padding: 4px 12px;"><i id="currentLineWidth" class="line onepx"></i> 1px</button>
                                 <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <span class="caret"></span>
                                     <span class="sr-only">Toggle Dropdown</span>
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li class="fontSize" data-fontsize="7">
-                                        <a href="#">
-                                            <div class="pt7">7pt</div>
-                                        </a>
-                                    </li>
-                                    <li class="fontSize" data-fontsize="8">
-                                        <a href="#">
-                                            <div class="pt8">8pt</div>
-                                        </a>
-                                    </li>
-                                    <li class="fontSize" data-fontsize="9">
-                                        <a href="#">
-                                            <div class="pt9">9pt</div>
-                                        </a>
-                                    </li>
-                                    <li class="fontSize" data-fontsize="10">
-                                        <a href="#">
-                                            <div class="pt10">10pt</div>
-                                        </a>
-                                    </li>
-                                    <li class="fontSize" data-fontsize="12">
-                                        <a href="#">
-                                            <div class="pt12">12pt</div>
-                                        </a>
-                                    </li>
-                                    <li class="fontSize" data-fontsize="14">
-                                        <a href="#">
-                                            <div class="pt14">14pt</div>
-                                        </a>
-                                    </li>
-                                    <li class="fontSize" data-fontsize="18">
-                                        <a href="#">
-                                            <div class="pt18">18pt</div>
-                                        </a>
-                                    </li>
-                                    <li class="fontSize" data-fontsize="24">
-                                        <a href="#">
-                                            <div class="pt24">24pt</div>
-                                        </a>
-                                    </li>
-                                    <li class="fontSize" data-fontsize="36">
-                                        <a href="#">
-                                            <div class="pt36">36pt</div>
-                                        </a>
-                                    </li>
+                                    <li class="lineWidth" data-width="0.2"><a href="#"><i class="line line-wider onepx"></i> Hairline</a></li>
+                                    <li class="lineWidth" data-width="0.5"><a href="#"><i class="line line-wider onepx"></i> 0.5px</a></li>
+                                    <li class="lineWidth" data-width="1"><a href="#"><i class="line line-wider onepx"></i> 1px</a></li>
+                                    <li class="lineWidth" data-width="2"><a href="#"><i class="line line-wider twopx"></i> 2px</a></li>
+                                    <li class="lineWidth" data-width="3"><a href="#"><i class="line line-wider threepx"></i> 3px</a></li>
+                                    <li class="lineWidth" data-width="4"><a href="#"><i class="line line-wider fourpx"></i> 4px</a></li>
+                                    <li class="lineWidth" data-width="5"><a href="#"><i class="line line-wider fivepx"></i> 5px</a></li>
+                                    <li class="lineWidth" data-width="10"><a href="#"><i class="line line-wider tenpx"></i> 10px</a></li>
                                 </ul>
                             </div>
-                        </div>
-                        <div class="btn-group" id="lineWidth">
-                            <button id="currentLineWidthLabel" type="button" class="btn btn-default btn-lg" style="padding: 4px 12px;"><i id="currentLineWidth" class="line onepx"></i> 1px</button>
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="caret"></span>
-                                <span class="sr-only">Toggle Dropdown</span>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li class="lineWidth" data-width="0.2"><a href="#"><i class="line line-wider onepx"></i> Hairline</a></li>
-                                <li class="lineWidth" data-width="0.5"><a href="#"><i class="line line-wider onepx"></i> 0.5px</a></li>
-                                <li class="lineWidth" data-width="1"><a href="#"><i class="line line-wider onepx"></i> 1px</a></li>
-                                <li class="lineWidth" data-width="2"><a href="#"><i class="line line-wider twopx"></i> 2px</a></li>
-                                <li class="lineWidth" data-width="3"><a href="#"><i class="line line-wider threepx"></i> 3px</a></li>
-                                <li class="lineWidth" data-width="4"><a href="#"><i class="line line-wider fourpx"></i> 4px</a></li>
-                                <li class="lineWidth" data-width="5"><a href="#"><i class="line line-wider fivepx"></i> 5px</a></li>
-                                <li class="lineWidth" data-width="10"><a href="#"><i class="line line-wider tenpx"></i> 10px</a></li>
-                            </ul>
-                        </div>
-                        <div class="fill-group" style="display: none;">
-                            <input type="checkbox" name="fill" id="fill" class=""></input>
-                            <label for="fill">Fill</label>
-                            <input type="color" name="fillPicker" id="fillPicker" class="picker picker-fill" value="#cccccc" />
-                            <input type="range" id="opacity" min="0" max="100" value="100" />
-                            <div class="opacity-amount" data-opacity="100">100%</div>
+                            <div class="fill-group" style="display: none;">
+                                <input type="checkbox" name="fill" id="fill" class=""></input>
+                                <label for="fill">Fill</label>
+                                <input type="color" name="fillPicker" id="fillPicker" class="picker picker-fill" value="#cccccc" />
+                                <input type="range" id="opacity" min="0" max="100" value="100" />
+                                <div class="opacity-amount" data-opacity="100">100%</div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -154,15 +156,18 @@
                 </div>
                 <div class="row">
                     <div class="options">
-                        <div class="btn-group options-lower">
-                            <button type="button" id="optionClear" class="btn btn-default btn-lg" style="padding: 4px 12px;"><i class="fa fa-trash-o"></i> Clear</button>
-                            <button type="button" id="optionUndo" class="btn btn-default btn-lg" style="padding: 4px 12px;"><i class="fa fa-undo"></i> Undo</button>
-                            <button type="button" id="optionRedo" class="btn btn-default btn-lg" style="padding: 4px 12px;"><i class="fa fa-repeat"></i> Redo</button>
+                        <div class="buttons">
+                            <div class="btn-group options-lower">
+                                <button type="button" id="optionClear" class="btn btn-default btn-lg" style="padding: 4px 12px;"><i class="fa fa-trash-o"></i> Clear</button>
+                                <button type="button" id="optionUndo" class="btn btn-default btn-lg" style="padding: 4px 12px;"><i class="fa fa-undo"></i> Undo</button>
+                                <button type="button" id="optionRedo" class="btn btn-default btn-lg" style="padding: 4px 12px;"><i class="fa fa-repeat"></i> Redo</button>
+                            </div>
+                            <div class="btn-group options-lower">
+                                <button type="button" id="optionSave" class="btn btn-default btn-lg" style="padding: 4px 12px;"><i class="fa fa-save"></i> Save</button>
+                                <button type="button" id="optionOpen" class="btn btn-default btn-lg" style="padding: 4px 12px;"><i class="fa fa-folder-open-o"></i> Open</button>
+                            </div>
                         </div>
-                        <div class="btn-group options-lower">
-                            <button type="button" id="optionSave" class="btn btn-default btn-lg" style="padding: 4px 12px;"><i class="fa fa-save"></i> Save</button>
-                            <button type="button" id="optionOpen" class="btn btn-default btn-lg" style="padding: 4px 12px;"><i class="fa fa-folder-open-o"></i> Open</button>
-                        </div>
+                        <div id="messages" style="display: none;"></div>
                     </div>
                 </div>
             </div>
@@ -177,20 +182,20 @@
             </span>
             <input id="save-filename" type="text" class="form-control" placeholder="Name of file..." aria-label="...">
         </div>
-        <div class="input-group">
+        <div class="btn-spaced">
             <button id="save" class="btn btn-default btn-lg"><i class="fa fa-save"></i> 
             Save</button>
-            <button id="cancelSave" class="btn btn-default btn-lg">Cancel</button>
+            <button id="cancelSave" class="cancel btn btn-default btn-lg">Cancel</button>
         </div>
         <div id="save-success" style="display: none;">Successfully saved!</div>
     </div>
     <div id="open-dialog" class="dialog">
         <h2>Let's open some of these masterpieces</h2>
         <select id="open-file-list" style="width: 90%; max-width: 95%;"></select>
-        <div class="input-group">
+        <div class="btn-spaced">
             <button id="open" class="btn btn-default btn-lg"><i class="fa fa-folder-open"></i> 
             Open</button>
-            <button id="cancelOpen" class="btn btn-default btn-lg">Cancel</button>
+            <button id="cancelOpen" class="cancel btn btn-default btn-lg">Cancel</button>
         </div>
     </div>
     <div id="fake-screen"></div>

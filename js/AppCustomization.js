@@ -42,4 +42,22 @@ var AppCustomization = {
             }
         });
     },
+
+    enableCancel: function(dialog) {
+        Mousetrap.bind('esc', function() {
+            switch (dialog) {
+                case 'open':
+                    $('#cancelOpen').trigger("click");
+                    break;
+                case 'save':
+                    $('#cancelSave').trigger("click");
+                default:
+                    break;
+            }
+        });
+    },
+
+    disableCancel: function(dialog) {
+        Mousetrap.unbind('esc');
+    },
 };

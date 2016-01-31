@@ -43,10 +43,11 @@ var utils = {
             crossDomain: true,
             success: function(data) {
                 console.log("Success: ", data);
-                then();
+                then('Save successful!');
             },
             error: function(xhr, err) {
                 console.log("Error: ", xhr, err);
+                then('Unable to save, please try again', -1);
             }
         });
     },
