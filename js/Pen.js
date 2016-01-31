@@ -56,6 +56,9 @@ var Pen = Shape.extend({
         canvas.strokeStyle = this.color;
         canvas.lineWidth = this.lineWidth;
 
+        // Offset used to calculate move from original path array. Keeps each draw from an 
+        // extra run through the path array to set each points new coordinates. Offset is 
+        // added during draw.
         var xOff = this.position.x - this.xOffset;
         var yOff = this.position.y - this.yOffset;
 
