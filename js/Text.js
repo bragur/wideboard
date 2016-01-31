@@ -15,7 +15,6 @@ var Text = Shape.extend({
     },
 
     startDrawing: function(point, canvas) {
-        point.log("Ætla að skrifa hér");
         AppChanges.getText(point);
     },
 

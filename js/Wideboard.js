@@ -187,7 +187,7 @@ function Wideboard(canvasSelector) {
     };
 
     self.insertText = function(str, startingPosition) {
-        console.log(self.font);
+        console.log("Hello font! " + self.font);
         var shape = new Text(startingPosition, self.color, self.fillColor, self.lineWidth, self.font, str);
         app.shapes.push(shape);
         shape.added(self.canvasContext);
