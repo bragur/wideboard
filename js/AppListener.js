@@ -32,31 +32,9 @@ var AppListener = {
             AppChanges.checkVisibles(newTool);
             app.selectionTool = false;
             app.textTool = false;
-
-            switch (newTool) {
-                case 'Rectangle':
-                    app.shapeConstructor = Rectangle;
-                    break;
-                case 'Line':
-                    app.shapeConstructor = Line;
-                    break;
-                case 'Ellipse':
-                    app.shapeConstructor = Ellipse;
-                    break;
-                case 'Text':
-                    app.shapeConstructor = Text;
-                    app.textTool = true;
-                    break;
-                case 'Pen':
-                    app.shapeConstructor = Pen;
-                    break;
-                case 'Move':
-                    app.shapeConstructor = Move;
-                    app.selectionTool = true;
-                    break;
-                default:
-                    break;
-            }
+            app.shapeConstructor = eval(newTool);
+            if (app.shapeConstructor === Text) { app.textTool = true; }
+            else if (app.shapeConstructor === Move) { app.selectionTool = true; }
         });
     },
 
