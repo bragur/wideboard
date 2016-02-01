@@ -20,6 +20,7 @@ var AppListener = {
         this.fontListener();
         this.textToolListener();
         this.fileNameListener();
+        this.exportListener();
     },
 
     toolChangeListener: function() {
@@ -72,6 +73,7 @@ var AppListener = {
         'use strict';
         $('#colorPicker').on('change', function() {
             app.setColor($(this).val());
+            $('#textTool').css('color', $(this).val());
         });
     },
 
@@ -239,4 +241,14 @@ var AppListener = {
             }
         });
     },
+
+    exportListener: function() {
+        $('#btn-download').on('mousedown', function() {
+            var dataURL = document.getElementById('canvas').toDataURL('image/png');
+            $(this).attr('href', dataURL);
+            console.log(dataURL);
+        });
+        $('#btn-download').on('click', function(e) {
+        });
+    }
 };

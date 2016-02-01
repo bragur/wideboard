@@ -165,6 +165,7 @@
                             <div class="btn-group options-lower">
                                 <button type="button" id="optionSave" class="btn btn-default btn-lg" style="padding: 4px 12px;"><i class="fa fa-save"></i> Save</button>
                                 <button type="button" id="optionOpen" class="btn btn-default btn-lg" style="padding: 4px 12px;"><i class="fa fa-folder-open-o"></i> Open</button>
+                                <!--button type="button" id="optionExport" class="btn btn-default btn-lg" style="padding: 4px 12px;"><a href="#" id="btn-download" download="image.png"><i class="fa fa-share"></i> Export...</a></button-->
                             </div>
                         </div>
                         <div id="messages" style="display: none;"></div>
@@ -188,7 +189,6 @@
             Save</button>
             <button id="cancelSave" class="cancel btn btn-default btn-lg">Cancel</button>
         </div>
-        <div id="save-success" style="display: none;">Successfully saved!</div>
     </div>
     <div id="open-dialog" class="dialog">
         <h2>Let's open some of these masterpieces</h2>
@@ -198,6 +198,7 @@
             Open</button>
             <button id="cancelOpen" class="cancel btn btn-default btn-lg">Cancel</button>
         </div>
+        <div class="processing" style="display: none;"><img src="gif/processing.gif" alt=""></div>
     </div>
     <div id="fake-screen"></div>
     <script src="js/lib/Base.js"></script>

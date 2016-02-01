@@ -32,7 +32,7 @@ var utils = {
     },
 
     ajaxSaveCall: function(apiUrl, parameters, then) {
-        console.log(parameters);
+        AppChanges.enableProcessing();
 
         $.ajax({
             type: "POST",
@@ -42,7 +42,6 @@ var utils = {
             dataType: "jsonp",
             crossDomain: true,
             success: function(data) {
-                console.log("Success: ", data);
                 then('Save successful!');
             },
             error: function(xhr, err) {
@@ -78,6 +77,8 @@ var utils = {
     downloadShapes: function(apiUrl, id, getDrawingHandler) {
         var parameters = {"id": id};
 
+        AppChanges.enableProcessing();
+        
         $.ajax({
             type: "GET",
             url: apiUrl,
@@ -153,15 +154,14 @@ var utils = {
                 case 'Pen':
                     var shape = new Pen(position, arr[i].color, arr[i].fillColor, arr[i].lineWidth);
                     shape.path = arr[i].path;
-                    console.log(shape);
                     break;
                 case 'Text':
-                    console.log(arr[i]);
-                    console.log(arr[i].string);
-                    var shape = new Text(position, arr[i].color, '#000000', arr[i].lineWidth, arr[i].font, arr[i].string);
-                    shape.size = arr[i].size;
-                    shape.offset = true;
-                    shape.sizeOffset = arr[i].sizeOffset;
+                    if (arr[i].font !== undefined) {
+                        var shape = new Text(position, arr[i].color, '#000000', arr[i].lineWidth, arr[i].font, arr[i].string);
+                        shape.size = arr[i].size;
+                        shape.offset = true;
+                        shape.sizeOffset = arr[i].sizeOffset;
+                    }
                     break;
                 default:
                     var shape = null;

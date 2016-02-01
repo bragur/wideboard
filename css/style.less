@@ -207,6 +207,12 @@ h1 {
     }
     #save-success {
     }
+    .processing img {
+	    position: absolute;
+	    width: 34px;
+	    left: 238px;
+	    bottom: 12px;
+    }
 }
 
 #fake-screen {
@@ -222,6 +228,11 @@ h1 {
 #textTool {
 	font-size: 10px;
 	position: relative;
+	border: 0;
+	background-color: rgba(0,0,0,0.0);
+	&:focus {
+		outline: none;
+	}
 }
 
 .btn-spaced {

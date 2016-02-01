@@ -30,11 +30,13 @@ var Text = Shape.extend({
     drawText: function(canvas) {
         canvas.font = this.font;
         canvas.fillStyle = this.color;
-        this.sizeOffset = parseInt(this.font.split(" ")[1].replace("px", "")) - 7;
-        if (this.offset) {
-            canvas.fillText(this.string, this.position.x, this.position.y + 20 + this.sizeOffset);
-        } else {
-            canvas.fillText(this.string, this.position.x, this.position.y + this.sizeOffset);
+        if (this.font !== undefined) {
+            this.sizeOffset = parseInt(this.font.split(" ")[1].replace("px", "")) - 7;
+            if (this.offset) {
+                canvas.fillText(this.string, this.position.x, this.position.y + 20 + this.sizeOffset);
+            } else {
+                canvas.fillText(this.string, this.position.x, this.position.y + this.sizeOffset);
+            }
         }
     },
 });

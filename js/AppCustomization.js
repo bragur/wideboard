@@ -3,11 +3,16 @@ var AppCustomization = {
         this.resizeCanvas();
         this.setHotKeys();
         this.enableSaveAndOpen();
+        this.resizeTextTool();
     },
 
     resizeCanvas: function() {
         canvas.width = $('#canvasContainer').width();
         canvas.height = $('#canvasContainer').height();
+    },
+
+    resizeTextTool: function() {
+        $('#textTool').autoSize();
     },
 
     setHotKeys: function() {

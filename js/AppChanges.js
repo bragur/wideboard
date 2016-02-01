@@ -214,6 +214,7 @@ var AppChanges = {
     },
 
     closeSaveDialogAfterSave: function(str) {
+        AppChanges.disableProcessing();
         AppChanges.closeSaveDialog();
         AppChanges.message(str);
     },
@@ -236,6 +237,7 @@ var AppChanges = {
         console.log("Gonna close this open dialog thingy here");
         AppCustomization.disableCancel();
         AppCustomization.enableSaveAndOpen();
+        AppChanges.disableProcessing();
         var $dialog = $('#open-dialog');
         var dialogWidth = $dialog.width();
         var shadowWidth = parseInt($dialog.css('box-shadow').split(' ')[5].replace("px", ""));
@@ -297,4 +299,12 @@ var AppChanges = {
         $('#textTool').addClass("font-" + font.toLowerCase().trim().replace(" ", "-")).addClass("pt" + size);
         console.log("font-" + font.toLowerCase().trim().replace(" ", "-"));
     },
+
+    enableProcessing: function() {
+        $('.processing').fadeIn();
+    },
+
+    disableProcessing: function() {
+        $('.processing').fadeOut();
+    }
 };

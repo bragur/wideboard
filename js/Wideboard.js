@@ -45,7 +45,9 @@ function Wideboard(canvasSelector) {
 
             position.log('drawing stop');
 
-            self.shapes.push(shape);
+            if (!self.selectionTool) {
+                self.shapes.push(shape);
+            }
             shape.added(self.canvasContext);
 
             // Tell drawing and drawingStop to take a chillpill
@@ -192,7 +194,15 @@ function Wideboard(canvasSelector) {
         app.shapes.push(shape);
         shape.added(self.canvasContext);
         self.redraw();
-        setTimeout(function() { self.redraw(); }, 4); // don't ask
+        setTimeout(function() { self.redraw(); }, 8); // don't ask
+    };
+
+    self.whiteScreen = function() {
+        var background = new Rectangle(new Point(0,0), '#ffffff', '#ffffff', 0);
+        background.size = new Point($('#canvasContainer').width(), $('#canvasContainer').height());
+        self.shapes.push(background);
+        // self.canvasContext.fillStyle = '#344556';
+        // self.canvasContext.fillRect(0,0, $('#canvasContainer').width(), $('#canvasContainer').height());
     };
 
     self.init = function() {
@@ -222,7 +232,9 @@ function Wideboard(canvasSelector) {
         AppListener.init();
         AppChanges.init();
 
-        self.apiUser = 'bragi14';
+        // self.whiteScreen();
+
+        self.apiUser = 'baldurt13';
         self.apiSaveUrl = 'http://whiteboard.apphb.com/Home/Save';
         self.apiGetListUrl = 'http://whiteboard.apphb.com/Home/GetList';
         self.apiGetDrawingUrl = 'http://whiteboard.apphb.com/Home/GetWhiteboard';

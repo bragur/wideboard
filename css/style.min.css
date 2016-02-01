@@ -123,6 +123,7 @@ h1.site-title {
 #main .font-bigger {
   font-size: 20px;
 }
+/* #### NEED FONT SIZES #### */
 .font-arial {
   font-family: "Arial";
 }
@@ -135,7 +136,6 @@ h1.site-title {
 .font-comic-sans {
   font-family: "Comic sans MS";
 }
-/* #### NEED FONT SIZES #### */
 .pt1 {
   font-size: 1px !important;
 }
@@ -292,6 +292,12 @@ input.textBox {
 .dialog h2 {
   text-align: center;
 }
+.dialog .processing img {
+  position: absolute;
+  width: 34px;
+  left: 238px;
+  bottom: 12px;
+}
 #fake-screen {
   position: fixed;
   top: 0;
@@ -304,6 +310,11 @@ input.textBox {
 #textTool {
   font-size: 10px;
   position: relative;
+  border: 0;
+  background-color: rgba(0, 0, 0, 0);
+}
+#textTool:focus {
+  outline: none;
 }
 .btn-spaced {
   display: flex;
